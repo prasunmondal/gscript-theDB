@@ -17,7 +17,8 @@ function fetch_by_condition_and(ss, sheetname, matchCol, matchValue, properties)
       record[properties[p]] = row[p];
     }
 
-    if(util_match_and(ss, sheetname, matchValue, matchCol, row)) {
+    var tabReference = ss.getSheetByName(sheetname);
+    if(util_match_and(tabReference, matchValue, matchCol, row)) {
       data.push(record);
     }
   }

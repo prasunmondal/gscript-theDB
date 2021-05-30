@@ -31,7 +31,7 @@ function insert_object_unique(jsonString, request) {
     }
   }
   
-  if(is_present_conditional_and(ss, tabName, matchCol, matchValue))
+  if(is_present_conditional_and(tabReference, matchCol, matchValue))
     return "UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
   
   var rowData = []

@@ -17,7 +17,7 @@ function fetch_by_condition_or(ss, sheetname, matchCol, matchValue, properties) 
       record[properties[p]] = row[p];
     }
 
-    if(util_match_or(ss, sheetname, matchValue, matchCol, row)) {
+    if(util_match_or(tabReference, matchValue, matchCol, row)) {
       data.push(record);
     }
   }
