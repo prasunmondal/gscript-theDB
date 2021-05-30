@@ -1,5 +1,4 @@
-function util_getColumnNumberFromColumnName(ss, sheetname, name) {
-  var tabReference = ss.getSheetByName(sheetname);
+function util_getColumnNumberFromColumnName(tabReference, name) {
   properties = getHeaderRow_(tabReference);
   properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   for (var p in properties) {
