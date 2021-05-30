@@ -1,4 +1,4 @@
-function is_present_conditional_and(tabReference, matchCol, matchValue, properties) {
+function is_present_conditional_and(tabReference, matchCol, matchValue) {
   var rows = getDataRows_(tabReference);
 
   for (var r = 0, l = rows.length; r < l; r++) {

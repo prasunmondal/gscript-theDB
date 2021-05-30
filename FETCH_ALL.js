@@ -1,5 +1,4 @@
-function fetch_all(tabReference, properties) {
-  var str = "";
+function fetch_all(tabReference) {
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });

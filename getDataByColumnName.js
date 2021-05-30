@@ -1,5 +1,4 @@
-function getDataByColumnName(tabReference, matchCol, matchValue, properties) {
-  var str = "";
+function getDataByColumnName(tabReference, matchCol, matchValue) {
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
@@ -8,7 +7,6 @@ function getDataByColumnName(tabReference, matchCol, matchValue, properties) {
   matchCol = util_getColumnNumberFromColumnName(tabReference, matchCol)
   
   var matchValues = matchValue.split(',');
-  str += "  - MatchValues: " + matchValues;
   var rows = getDataRows_(tabReference),
       data = [];
 
@@ -19,11 +17,8 @@ function getDataByColumnName(tabReference, matchCol, matchValue, properties) {
     for (var p in properties) {
       record[properties[p]] = row[p];
     }
-    
-    str += "MatchCol Value: " + matchCol
-    str += "  - MatchCol: " + matchValues + "," + row[matchCol]
-    if(matchValues == row[matchCol]) { 
-      str += "  - MatchedData: " + record;
+
+    if(matchValues == row[matchCol]) {
       data.push(record);
     }
   }

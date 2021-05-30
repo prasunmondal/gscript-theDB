@@ -34,11 +34,11 @@ function doPost(request) {
     var dataColumn = request.parameter.dataColumn;
     var dataValue = request.parameter.dataValue;
     var objectData = request.parameter.objectData;
+    var keys  = request.parameter.keys;
+    var searchColumn = request.parameter.searchColumn;
     
-    var ss= SpreadsheetApp.openById(sheetId);
-   
-    var sheet=ss.getSheetByName(tabName);
-    var tabReference = ss.getSheetByName(tabName);
+    var sheetReference= SpreadsheetApp.openById(sheetId);
+    var tabReference = sheetReference.getSheetByName(tabName);
 
     if(operation == "INSERT_OBJECT"){
       return generateOutput(insert_object(objectData, request), request)
@@ -75,9 +75,6 @@ function doPost(request) {
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_OBJECT") {
-      var
-      keys  = request.parameter.keys,
-      searchColumn = request.parameter.searchColumn;
       var data = {};
       data.records = getDataByColumnName(tabReference, searchColumn, keys);
       return generateOutput(data, request);
