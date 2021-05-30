@@ -32,7 +32,6 @@ function doPost(request) {
     var tabName = request.parameter.tabName;
     var dataColumn = request.parameter.dataColumn;
     var dataValue = request.parameter.dataValue;
-    var uniqueCol = request.parameter.uniqueCol;
     var objectData = request.parameter.objectData;
     
     var ss= SpreadsheetApp.openById(sheetId);
@@ -41,13 +40,13 @@ function doPost(request) {
     var tabReference = ss.getSheetByName(tabName);
 
     if(operation == "INSERT_OBJECT"){
-      return generateOutput(insert_object(request.parameter.objectData, request), request)
+      return generateOutput(insert_object(objectData, request), request)
     }
     else if(operation == "INSERT_OBJECT_UNIQUE"){
-      return generateOutput(insert_object_unique(request.parameter.objectData, request), request)
+      return generateOutput(insert_object_unique(objectData, request), request)
     }
     else if(operation == "INSERT_RAW_OBJECT"){
-      return generateOutput(saveDataRaw(request.parameter.objectData, request), request)
+      return generateOutput(saveDataRaw(objectData, request), request)
     }
     else if(operation == "IS_PRESENT_CONDITIONAL_OR"){
       var data = {};
