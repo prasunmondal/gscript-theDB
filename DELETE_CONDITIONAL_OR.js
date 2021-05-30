@@ -1,6 +1,4 @@
-function delete_conditional_or(sheetId, tabName, dataColumn, dataValue) {  
-  var ss = SpreadsheetApp.openById(sheetId);
-  var tabReference = ss.getSheetByName(tabName);
+function delete_conditional_or(tabReference, dataColumn, dataValue) {
   var rows = tabReference.getDataRange();
   var numRows = rows.getNumRows();
   var values = rows.getValues();

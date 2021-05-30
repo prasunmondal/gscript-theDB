@@ -1,7 +1,6 @@
-function fetch_all(ss, sheetname, properties) {
+function fetch_all(tabReference, properties) {
   var str = "";
   if (typeof properties == "undefined") {
-    var tabReference = ss.getSheetByName(sheetname);
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }

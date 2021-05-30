@@ -1,7 +1,5 @@
-function fetch_by_condition_and(ss, sheetname, matchCol, matchValue, properties) {
+function fetch_by_condition_and(tabReference, matchCol, matchValue, properties) {
   if (typeof properties == "undefined") {
-
-    var tabReference = ss.getSheetByName(sheetname);
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
@@ -16,8 +14,7 @@ function fetch_by_condition_and(ss, sheetname, matchCol, matchValue, properties)
     for (var p in properties) {
       record[properties[p]] = row[p];
     }
-
-    var tabReference = ss.getSheetByName(sheetname);
+    
     if(util_match_and(tabReference, matchValue, matchCol, row)) {
       data.push(record);
     }

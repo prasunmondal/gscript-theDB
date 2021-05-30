@@ -1,7 +1,5 @@
-function fetch_by_condition_or(ss, sheetname, matchCol, matchValue, properties) {
+function fetch_by_condition_or(tabReference, matchCol, matchValue, properties) {
   if (typeof properties == "undefined") {
-
-    var tabReference = ss.getSheetByName(sheetname);
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }

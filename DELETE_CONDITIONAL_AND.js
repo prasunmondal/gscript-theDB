@@ -1,17 +1,15 @@
-function delete_conditional_and(sheetId, tabName, dataColumn, dataValue) {
-  var ss = SpreadsheetApp.openById(sheetId);
-  var sheet = ss.getSheetByName(tabName);
-  var rows = sheet.getDataRange();
+function delete_conditional_and(tabReference, dataColumn, dataValue) {
+  var rows = tabReference.getDataRange();
   var numRows = rows.getNumRows();
   var values = rows.getValues();
 
   var rowsDeleted = 0;
   var lock = LockService.getScriptLock();
-  var tabReference = ss.getSheetByName(tabName);
+
   for (var i = numRows - 1; i >= 0; i--) {
     var row = values[i];
     if (util_match_and(tabReference, dataValue, dataColumn, row)) {
-      sheet.deleteRow((parseInt(i)+1));
+      tabReference.deleteRow((parseInt(i)+1));
       rowsDeleted++;
     }
   }

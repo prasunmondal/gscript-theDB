@@ -1,12 +1,11 @@
-function getDataByColumnName(ss, sheetname, matchCol, matchValue, properties) {
+function getDataByColumnName(tabReference, matchCol, matchValue, properties) {
   var str = "";
   if (typeof properties == "undefined") {
-    var tabReference = ss.getSheetByName(sheetname);
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
 
-  matchCol = getColumnNumberFromColumnName(ss, sheetname, matchCol)
+  matchCol = util_getColumnNumberFromColumnName(tabReference, matchCol)
   
   var matchValues = matchValue.split(',');
   str += "  - MatchValues: " + matchValues;

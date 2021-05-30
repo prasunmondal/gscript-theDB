@@ -60,12 +60,12 @@ function doPost(request) {
     }
     else if(operation == "DELETE_CONDITIONAL_AND"){
       var data = {};
-      data.records = delete_conditional_and(sheetId, tabName, dataColumn, dataValue);
+      data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_OR"){
       var data = {};
-      data.records = delete_conditional_or(sheetId, tabName, dataColumn, dataValue);
+      data.records = delete_conditional_or(tabReference, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_OBJECT") {
@@ -73,22 +73,22 @@ function doPost(request) {
       keys  = request.parameter.keys,
       searchColumn = request.parameter.searchColumn;
       var data = {};
-      data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
+      data.records = getDataByColumnName(tabReference, searchColumn, keys);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_ALL") {
       var data = {};
-      data.records = fetch_all(ss, tabName);
+      data.records = fetch_all(tabReference);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_OR") {
       var data = {};
-      data.records = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
+      data.records = fetch_by_condition_or(tabReference, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_AND") {
       var data = {};
-      data.records = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
+      data.records = fetch_by_condition_and(tabReference, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else {
