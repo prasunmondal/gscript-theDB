@@ -100,11 +100,9 @@ function doPost(request) {
 }
 
 function getHeaderRow_(tabReference) {
-  // var tabReference = ss.getSheetByName(sheetname);
-  return sh.getRange(1, 1, 1, tabReference.getLastColumn()).getValues()[0];
+  return tabReference.getRange(1, 1, 1, tabReference.getLastColumn()).getValues()[0];
 }
 
 function getDataRows_(tabReference) {
-  // var tabReference = ss.getSheetByName(sheetname);
-  return sh.getRange(2, 1, tabReference.getLastRow() - 1, tabReference.getLastColumn()).getValues();
+  return tabReference.getRange(2, 1, tabReference.getLastRow() - 1, tabReference.getLastColumn()).getValues();
 }
