@@ -47,7 +47,7 @@ function doPost(request) {
       return generateOutput(insert_object_unique(objectData, request), request)
     }
     else if(operation == "INSERT_RAW_OBJECT"){
-      return generateOutput(saveDataRaw(objectData, request), request)
+      return generateOutput(saveDataRaw(objectData, tabReference), request)
     }
     else if(operation == "IS_PRESENT_CONDITIONAL_OR"){
       var data = {};
