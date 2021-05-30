@@ -39,12 +39,8 @@ function doPost(request) {
    
     var sheet=ss.getSheetByName(tabName);
     var tabReference = ss.getSheetByName(tabName);
-    
-    if(operation == "INSERT")
-    {
-      //return generateOutput(addData(request), request);
-    }
-    else if(operation == "INSERT_OBJECT"){
+
+    if(operation == "INSERT_OBJECT"){
       return generateOutput(insert_object(request.parameter.objectData, request), request)
     }
     else if(operation == "INSERT_OBJECT_UNIQUE"){
@@ -53,97 +49,47 @@ function doPost(request) {
     else if(operation == "INSERT_RAW_OBJECT"){
       return generateOutput(saveDataRaw(request.parameter.objectData, request), request)
     }
-    else if(operation == "DELETE") {
-      //return generateOutput(DeleteData(request),request);
-    } 
-    else if(operation == "UPDATE"){
-      //return generateOutput(UpdateData(request), request);
-    }
-    else if(operation == "IS_PRESENT"){
-      //return generateOutput(isDataPresent(request), request);
-    }
     else if(operation == "IS_PRESENT_CONDITIONAL_OR"){
-      var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
-      dataValue  = request.parameter.dataValue,
-      dataColumn = request.parameter.dataColumn;
-
-      var data = {}, sheetObj = SpreadsheetApp.openById(sheetId);
-
-      data.records = is_present_conditional_or(sheetObj, tabName, dataColumn, dataValue);
+      var data = {};
+      data.records = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "IS_PRESENT_CONDITIONAL_AND"){
-      var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
-      dataValue  = request.parameter.dataValue,
-      dataColumn = request.parameter.dataColumn;
-
-      var data = {}, sheetObj = SpreadsheetApp.openById(sheetId);
-
-      data.records = is_present_conditional_and(sheetObj, tabName, dataColumn, dataValue);
+      var data = {};
+      data.records = is_present_conditional_and(ss, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_AND"){
-      var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
-      dataValue  = request.parameter.dataValue,
-      dataColumn = request.parameter.dataColumn;
-
-      var data = {}, sheetObj = SpreadsheetApp.openById(sheetId);
-
+      var data = {};
       data.records = delete_conditional_and(sheetId, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_OR"){
-      var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
-      dataValue  = request.parameter.dataValue,
-      dataColumn = request.parameter.dataColumn;
-
-      var data = {}, sheetObj = SpreadsheetApp.openById(sheetId);
-
+      var data = {};
       data.records = delete_conditional_or(sheetId, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_OBJECT") {
       var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
       keys  = request.parameter.keys,
       searchColumn = request.parameter.searchColumn;
-
-      var data = {}, sheetObj = SpreadsheetApp.openById(sheetId);
-
-      data.records = getDataByColumnName(sheetObj, tabName, searchColumn, keys);
+      var data = {};
+      data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_ALL") {
-      var
-      sheetId      = request.parameter.sheetId,
-      tabName   = request.parameter.tabName,
-      keys  = request.parameter.keys,
-      sheetObj = SpreadsheetApp.openById(sheetId);
-      searchColumn = request.parameter.searchColumn;
-
       var data = {};
-      data.records = fetch_all(sheetObj, tabName);
+      data.records = fetch_all(ss, tabName);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_OR") {
       var data = {};
-      var sheetObj = SpreadsheetApp.openById(sheetId);
-      data.records = fetch_by_condition_or(sheetObj, tabName, dataColumn, dataValue);
+      data.records = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_AND") {
       var data = {};
-      var sheetObj = SpreadsheetApp.openById(sheetId);
-      data.records = fetch_by_condition_and(sheetObj, tabName, dataColumn, dataValue);
+      data.records = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
       return generateOutput(data, request);
     }
     else {
