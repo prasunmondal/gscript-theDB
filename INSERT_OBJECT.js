@@ -4,7 +4,8 @@ function insert_object(jsonString, request1) {
    var data = JSON.parse(jsonString);
    
    var ss= SpreadsheetApp.openById(sheetId);
-   var headers = getHeaderRow_(ss, tabName);
+   var tabReference = ss.getSheetByName(tabName);
+   var headers = getHeaderRow_(tabReference);
    var keys = Object.keys(data);
    var values = Object.values(data);
    var colMap = getColumnMap(keys, headers)

@@ -99,12 +99,12 @@ function doPost(request) {
   }
 }
 
-function getHeaderRow_(ss, sheetname) {
-  var sh = ss.getSheetByName(sheetname);
-  return sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];  
+function getHeaderRow_(tabReference) {
+  // var tabReference = ss.getSheetByName(sheetname);
+  return sh.getRange(1, 1, 1, tabReference.getLastColumn()).getValues()[0];
 }
 
-function getDataRows_(ss, sheetname) {
-  var sh = ss.getSheetByName(sheetname);
-  return sh.getRange(2, 1, sh.getLastRow() - 1, sh.getLastColumn()).getValues();
+function getDataRows_(tabReference) {
+  // var tabReference = ss.getSheetByName(sheetname);
+  return sh.getRange(2, 1, tabReference.getLastRow() - 1, tabReference.getLastColumn()).getValues();
 }

@@ -8,7 +8,8 @@ function insert_object_unique(jsonString, request) {
 
   var keys = Object.keys(data);
   var values = Object.values(data);
-  var headers = getHeaderRow_(ss, tabName);
+  var tabReference = ss.getSheetByName(tabName);
+  var headers = getHeaderRow_(tabReference);
   var colMap = getColumnMap(keys, headers);
 
   str = "";

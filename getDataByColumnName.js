@@ -1,7 +1,8 @@
 function getDataByColumnName(ss, sheetname, matchCol, matchValue, properties) {
   var str = "";
   if (typeof properties == "undefined") {
-    properties = getHeaderRow_(ss, sheetname);
+    var tabReference = ss.getSheetByName(sheetname);
+    properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
 
@@ -9,7 +10,7 @@ function getDataByColumnName(ss, sheetname, matchCol, matchValue, properties) {
   
   var matchValues = matchValue.split(',');
   str += "  - MatchValues: " + matchValues;
-  var rows = getDataRows_(ss, sheetname),
+  var rows = getDataRows_(tabReference),
       data = [];
 
   for (var r = 0, l = rows.length; r < l; r++) {
