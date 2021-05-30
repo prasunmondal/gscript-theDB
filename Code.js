@@ -22,6 +22,7 @@
 // UPDATE_BY_SENDING_OBJECT               --
 // UPDATE_BY_COLUMN_NAME                  --
 
+// DELETE_ALL                             -- done
 // DELETE_CONDITIONAL_OR                  -- done
 // DELETE_CONDITIONAL_AND                 -- done
 
@@ -61,6 +62,11 @@ function doPost(request) {
     else if(operation == "DELETE_CONDITIONAL_AND"){
       var data = {};
       data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
+      return generateOutput(data, request);
+    }
+    else if(operation == "DELETE_ALL"){
+      var data = {};
+      data.records = delete_all(tabReference);
       return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_OR"){
