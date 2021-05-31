@@ -1,29 +1,33 @@
-// IS_PRESENT                             -- Not Vaild
-// IS_PRESENT_CONDITIONAL_OR              -- done
-// IS_PRESENT_CONDITIONAL_AND             -- done
+/*
 
-// FETCH_ALL                              -- done
-// FETCH_BY_CONDITION_OR                  -- done
-// FETCH_BY_CONDITION_AND                 -- done
-// FETCH_BY_CONDITION_DATE_GT             -- 
-// FETCH_BY_CONDITION_DATE_EQ             -- 
-// FETCH_BY_CONDITION_DATE_LT             -- 
+IS_PRESENT                             -- Not Vaild
+IS_PRESENT_CONDITIONAL_OR              -- done
+IS_PRESENT_CONDITIONAL_AND             -- done
 
-// INSERT_SEQUENTIAL                      --
-// INSERT_SEQUENTIAL_FULL_UNIQUE          --
-// INSERT_SEQUENTIAL_CONDITIONAL_UNIQUE   --
-// INSERT_RAW_OBJECT                      -- done
-// INSERT_OBJECT                          -- done
-// INSERT_OBJECT_CONDITIONAL_AND_UNIQUE   -- done
+FETCH_ALL                              -- done
+FETCH_BY_CONDITION_OR                  -- done
+FETCH_BY_CONDITION_AND                 -- done
+FETCH_BY_CONDITION_DATE_GT             --
+FETCH_BY_CONDITION_DATE_EQ             --
+FETCH_BY_CONDITION_DATE_LT             --
 
-// UPDATE_CONDITIONAL_OR                  --
-// UPDATE_CONDITIONAL_AND                 --
-// UPDATE_BY_SENDING_OBJECT               --
-// UPDATE_BY_COLUMN_NAME                  --
+INSERT_SEQUENTIAL                      --
+INSERT_SEQUENTIAL_FULL_UNIQUE          --
+INSERT_SEQUENTIAL_CONDITIONAL_UNIQUE   --
+INSERT_RAW_OBJECT                      -- done
+INSERT_OBJECT                          -- done
+INSERT_OBJECT_CONDITIONAL_AND_UNIQUE   -- done
 
-// DELETE_ALL                             -- done
-// DELETE_CONDITIONAL_OR                  -- done
-// DELETE_CONDITIONAL_AND                 -- done
+UPDATE_CONDITIONAL_OR                  --
+UPDATE_CONDITIONAL_AND                 --
+UPDATE_BY_SENDING_OBJECT               --
+UPDATE_BY_COLUMN_NAME                  --
+
+DELETE_ALL                             -- done
+DELETE_CONDITIONAL_OR                  -- done
+DELETE_CONDITIONAL_AND                 -- done
+
+*/
 
 function doPost(request) {
   try {
