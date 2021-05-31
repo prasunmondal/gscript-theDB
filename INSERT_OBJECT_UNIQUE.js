@@ -1,14 +1,9 @@
-function insert_object_unique(jsonString, request) {
-  var sheet = request.parameter.sheetId;
-  var tabName = request.parameter.tabName;
+function insert_object_unique(tabReference, jsonString, searchColumn) {
   var data = JSON.parse(jsonString);
-  var searchColumn = request.parameter.uniqueCol;
   matchColNamesArray = searchColumn.split(",")
-  var ss= SpreadsheetApp.openById(sheet);
 
   var keys = Object.keys(data);
   var values = Object.values(data);
-  var tabReference = ss.getSheetByName(tabName);
   var headers = getHeaderRow_(tabReference);
   var colMap = getColumnMap(keys, headers);
 
@@ -39,7 +34,6 @@ function insert_object_unique(jsonString, request) {
     var t = values[i].toString
     rowData[colMap[i]] = JSON.stringify(values[i]);
   }
-  var sheet=ss.getSheetByName(tabName);
-  sheet.appendRow(rowData)
+  tabReference.appendRow(rowData)
   return "200: INSERTED SUCCESSFULLY."
 }

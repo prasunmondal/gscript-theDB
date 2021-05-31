@@ -36,67 +36,52 @@ function doPost(request) {
     var objectData = request.parameter.objectData;
     var keys  = request.parameter.keys;
     var searchColumn = request.parameter.searchColumn;
+    var uniqueCol = request.parameter.uniqueCol;
     
     var sheetReference= SpreadsheetApp.openById(sheetId);
     var tabReference = sheetReference.getSheetByName(tabName);
+    var data = {};
 
     if(operation == "INSERT_OBJECT"){
-      return generateOutput(insert_object(objectData, request), request)
+      data.records = insert_object(tabReference, objectData)
     }
     else if(operation == "INSERT_OBJECT_UNIQUE"){
-      return generateOutput(insert_object_unique(objectData, request), request)
+      data.records = insert_object_unique(tabReference, objectData, uniqueCol);
     }
     else if(operation == "INSERT_RAW_OBJECT"){
-      return generateOutput(saveDataRaw(objectData, tabReference), request)
+      data.records = saveDataRaw(objectData, tabReference)
     }
     else if(operation == "IS_PRESENT_CONDITIONAL_OR"){
-      var data = {};
       data.records = is_present_conditional_or(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else if(operation == "IS_PRESENT_CONDITIONAL_AND"){
-      var data = {};
       data.records = is_present_conditional_and(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_AND"){
-      var data = {};
       data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else if(operation == "DELETE_ALL"){
-      var data = {};
       data.records = delete_all(tabReference);
-      return generateOutput(data, request);
     }
     else if(operation == "DELETE_CONDITIONAL_OR"){
-      var data = {};
       data.records = delete_conditional_or(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else if(operation == "FETCH_OBJECT") {
-      var data = {};
       data.records = getDataByColumnName(tabReference, searchColumn, keys);
-      return generateOutput(data, request);
     }
     else if(operation == "FETCH_ALL") {
-      var data = {};
       data.records = fetch_all(tabReference);
-      return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_OR") {
-      var data = {};
       data.records = fetch_by_condition_or(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else if(operation == "FETCH_BY_CONDITION_AND") {
-      var data = {};
       data.records = fetch_by_condition_and(tabReference, dataColumn, dataValue);
-      return generateOutput(data, request);
     }
     else {
       throw "Error: Illegal opCode. Invalid Operation type - " + request.parameter.opCode;
     }
+    return generateOutput(data, request);
   } catch (err) {
     return generateOutput("FAILED: " + err, request)
   }

@@ -1,10 +1,5 @@
-function insert_object(jsonString, request1) {
-  var sheetId = request1.parameter.sheetId;
-   var tabName = request1.parameter.tabName;
+function insert_object(tabReference, jsonString) {
    var data = JSON.parse(jsonString);
-   
-   var ss= SpreadsheetApp.openById(sheetId);
-   var tabReference = ss.getSheetByName(tabName);
    var headers = getHeaderRow_(tabReference);
    var keys = Object.keys(data);
    var values = Object.values(data);
@@ -12,11 +7,9 @@ function insert_object(jsonString, request1) {
 
    var rowData = []
    for(var i=0; i<values.length; i++) {
-     var t = values[i].toString
-     rowData[colMap[i]] = JSON.stringify(values[i]);
+       rowData[colMap[i]] = JSON.stringify(values[i]);
    }
-   var sheet=ss.getSheetByName(tabName);
-   sheet.appendRow(rowData)
+   tabReference.appendRow(rowData)
    return "200: INSERTED SUCCESSFULLY."
 }
 
