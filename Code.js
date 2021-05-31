@@ -45,6 +45,17 @@ function doPost(request) {
     var tabReference = sheetReference.getSheetByName(tabName);
     var data = {};
 
+    data.operation = operation
+    data.statusCode = 200
+
+    var idempotentOperations = ["INSERT_OBJECT", "INSERT_OBJECT_UNIQUE", "INSERT_RAW_OBJECT", "DELETE_CONDITIONAL_AND",
+    "DELETE_ALL", "DELETE_CONDITIONAL_OR"]
+    if(idempotentOperations.indexOf(operation)+1) {
+      data.lockedOperation = true
+    } else {
+      data.lockedOperation = false
+    }
+
     if (operation == "INSERT_OBJECT") {
       data.records = insert_object(tabReference, objectData);
     } else if (operation == "INSERT_OBJECT_UNIQUE") {
@@ -74,6 +85,7 @@ function doPost(request) {
     }
     return generateOutput(data, request);
   } catch (err) {
+    data.statusCode = 300
     return generateOutput("FAILED: " + err, request)
   }
 }

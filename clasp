@@ -1,0 +1,5 @@
+clasp undeploy --all
+clasp pull
+clasp push
+clasp deploy
+clasp undeploy @12
