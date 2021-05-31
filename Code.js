@@ -23,8 +23,8 @@
 // UPDATE_BY_COLUMN_NAME                  --
 
 // DELETE_ALL                             -- done
-// DELETE_CONDITIONAL_AND                 -- done
 // DELETE_CONDITIONAL_OR                  -- done
+// DELETE_CONDITIONAL_AND                 -- done
 
 function doPost(request) {
   try {
@@ -42,46 +42,44 @@ function doPost(request) {
     var tabReference = sheetReference.getSheetByName(tabName);
     var data = {};
 
-    if(operation == "FETCH_OBJECT") {
+    if(operation == "INSERT_OBJECT"){
+      data.records = insert_object(tabReference, objectData)
+    }
+    else if(operation == "INSERT_OBJECT_UNIQUE"){
+      data.records = insert_object_unique(tabReference, objectData, uniqueCol);
+    }
+    else if(operation == "INSERT_RAW_OBJECT"){
+      data.records = saveDataRaw(objectData, tabReference)
+    }
+    else if(operation == "IS_PRESENT_CONDITIONAL_OR"){
+      data.records = is_present_conditional_or(tabReference, dataColumn, dataValue);
+    }
+    else if(operation == "IS_PRESENT_CONDITIONAL_AND"){
+      data.records = is_present_conditional_and(tabReference, dataColumn, dataValue);
+    }
+    else if(operation == "DELETE_CONDITIONAL_AND"){
+      data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
+    }
+    else if(operation == "DELETE_ALL"){
+      data.records = delete_all(tabReference);
+    }
+    else if(operation == "DELETE_CONDITIONAL_OR"){
+      data.records = delete_conditional_or(tabReference, dataColumn, dataValue);
+    }
+    else if(operation == "FETCH_OBJECT") {
       data.records = getDataByColumnName(tabReference, searchColumn, keys);
     }
-
-    switch (operation)  {
-      case "IS_PRESENT_CONDITIONAL_OR":
-        data.records = is_present_conditional_or(tabReference, dataColumn, dataValue);
-        break;
-      case "IS_PRESENT_CONDITIONAL_AND":
-        data.records = is_present_conditional_and(tabReference, dataColumn, dataValue);
-        break;
-      case "FETCH_ALL":
-        data.records = fetch_all(tabReference);
-        break;
-      case "FETCH_BY_CONDITION_OR":
-        data.records = fetch_by_condition_or(tabReference, dataColumn, dataValue);
-        break;
-      case "FETCH_BY_CONDITION_AND":
-        data.records = fetch_by_condition_and(tabReference, dataColumn, dataValue);
-        break;
-      case "INSERT_RAW_OBJECT":
-        data.records = saveDataRaw(objectData, tabReference)
-        break;
-      case "INSERT_OBJECT":
-        return generateOutput(data, request);
-        break;
-      case "INSERT_OBJECT_CONDITIONAL_AND_UNIQUE":
-        data.records = insert_object_unique(tabReference, objectData, uniqueCol);
-        break;
-      case "DELETE_ALL":
-        data.records = delete_all(tabReference);
-        break;
-      case "DELETE_CONDITIONAL_AND":
-        data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
-        break;
-      case "DELETE_CONDITIONAL_OR":
-        data.records = delete_conditional_or(tabReference, dataColumn, dataValue);
-        break;
-      default:
-        throw "Error: Illegal opCode. Invalid Operation type - " + request.parameter.opCode;
+    else if(operation == "FETCH_ALL") {
+      data.records = fetch_all(tabReference);
+    }
+    else if(operation == "FETCH_BY_CONDITION_OR") {
+      data.records = fetch_by_condition_or(tabReference, dataColumn, dataValue);
+    }
+    else if(operation == "FETCH_BY_CONDITION_AND") {
+      data.records = fetch_by_condition_and(tabReference, dataColumn, dataValue);
+    }
+    else {
+      throw "Error: Illegal opCode. Invalid Operation type - " + request.parameter.opCode;
     }
     return generateOutput(data, request);
   } catch (err) {
