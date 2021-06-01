@@ -1,0 +1,12 @@
+https://www.restapitutorial.com/httpstatuscodes.html
+
+200 OK
+201 Created
+204 No Content
+304 Not Modified
+400 Bad Request
+409 Conflict
+403 Forbidden
+401 Unauthorized
+404 Not Found
+500 Internal Server Error
