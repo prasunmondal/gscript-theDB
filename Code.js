@@ -43,50 +43,52 @@ function doPost(request) {
 
     var sheetReference = SpreadsheetApp.openById(sheetId);
     var tabReference = sheetReference.getSheetByName(tabName);
-    var data = {};
+    var response = {};
 
-    data.operation = operation
-    data.statusCode = 200
+    response.operation = operation
+    response.responseCode = 0
 
     var idempotentOperations = ["INSERT_OBJECT", "INSERT_OBJECT_UNIQUE", "INSERT_RAW_OBJECT", "DELETE_CONDITIONAL_AND",
     "DELETE_ALL", "DELETE_CONDITIONAL_OR"]
     if(idempotentOperations.indexOf(operation)+1) {
-      data.lockedOperation = true
+      response.lockedOperation = true
     } else {
-      data.lockedOperation = false
+      response.lockedOperation = false
     }
 
     if (operation == "INSERT_OBJECT") {
-      data.records = insert_object(tabReference, objectData);
+      response.records = insert_object(response, tabReference, objectData);
     } else if (operation == "INSERT_OBJECT_UNIQUE") {
-      data.records = insert_object_unique(tabReference, objectData, uniqueCol);
+      response.records = insert_object_unique(response, tabReference, objectData, uniqueCol);
     } else if (operation == "INSERT_RAW_OBJECT") {
-      data.records = saveDataRaw(objectData, tabReference)
+      response.records = saveDataRaw(response, objectData, tabReference)
     } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
-      data.records = is_present_conditional_or(tabReference, dataColumn, dataValue);
+      response.records = is_present_conditional_or(response, tabReference, dataColumn, dataValue);
     } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
-      data.records = is_present_conditional_and(tabReference, dataColumn, dataValue);
+      response.records = is_present_conditional_and(response, tabReference, dataColumn, dataValue);
     } else if (operation == "DELETE_CONDITIONAL_AND") {
-      data.records = delete_conditional_and(tabReference, dataColumn, dataValue);
+      response.records = delete_conditional_and(response, tabReference, dataColumn, dataValue);
     } else if (operation == "DELETE_ALL") {
-      data.records = delete_all(tabReference);
+      response.records = delete_all(response, tabReference);
     } else if (operation == "DELETE_CONDITIONAL_OR") {
-      data.records = delete_conditional_or(tabReference, dataColumn, dataValue);
+      response.records = delete_conditional_or(response, tabReference, dataColumn, dataValue);
     } else if (operation == "FETCH_OBJECT") {
-      data.records = getDataByColumnName(tabReference, searchColumn, keys);
+      response.records = getDataByColumnName(response, tabReference, searchColumn, keys);
     } else if (operation == "FETCH_ALL") {
-      data.records = fetch_all(tabReference);
+      response.records = fetch_all(response, tabReference);
     } else if (operation == "FETCH_BY_CONDITION_OR") {
-      data.records = fetch_by_condition_or(tabReference, dataColumn, dataValue);
+      response.records = fetch_by_condition_or(response, tabReference, dataColumn, dataValue);
     } else if (operation == "FETCH_BY_CONDITION_AND") {
-      data.records = fetch_by_condition_and(tabReference, dataColumn, dataValue);
+      response.records = fetch_by_condition_and(response, tabReference, dataColumn, dataValue);
     } else {
       throw "Error: Illegal opCode. Invalid Operation type - " + operation;
     }
-    return generateOutput(data, request);
+    return generateOutput(response, request);
   } catch (err) {
-    data.statusCode = 300
-    return generateOutput("FAILED: " + err, request)
+    response.responseCode = 300
+    response.data = "FAILED: " + err.scriptStackTraceElements;
+    // response.errortrace =
+    return generateOutput(response, request)
   }
 }
 

@@ -1,4 +1,4 @@
-function insert_object(tabReference, jsonString) {
+function insert_object(response, tabReference, jsonString) {
    var data = JSON.parse(jsonString);
    var headers = getHeaderRow_(tabReference);
    var keys = Object.keys(data);

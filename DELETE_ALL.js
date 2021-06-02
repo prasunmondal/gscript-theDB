@@ -1,4 +1,4 @@
-function delete_all(tabReference) {
+function delete_all(response, tabReference) {
   var rows = tabReference.getDataRange();
   var numRows = rows.getNumRows();
 

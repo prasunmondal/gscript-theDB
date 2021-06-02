@@ -1,4 +1,4 @@
-function insert_object_unique(tabReference, jsonString, searchColumn) {
+function insert_object_unique(response, tabReference, jsonString, searchColumn) {
   var data = JSON.parse(jsonString);
   matchColNamesArray = searchColumn.split(",")
 
@@ -7,16 +7,15 @@ function insert_object_unique(tabReference, jsonString, searchColumn) {
   var headers = getHeaderRow_(tabReference);
   var colMap = getColumnMap(keys, headers);
 
-  str = "";
+  var str = " - 1 -"
   matchCol = ""
   matchValue = ""
   matches = 0
-  str += "1--";
+  str += " - 2 -"
   for(var i=0; i<keys.length; i++) {
-    str += "2-" + i + "-";
+    str += " - 3 -"
     if(matchColNamesArray.indexOf(keys[i])+1) {
       matches++;
-      str += "3-" + i + "-";
       if(matches > 1) {
         matchCol += ","
         matchValue += ","
@@ -25,13 +24,13 @@ function insert_object_unique(tabReference, jsonString, searchColumn) {
       matchValue += JSON.stringify(values[i]);
     }
   }
+  str += " - 4 -"
   
-  if(is_present_conditional_and(tabReference, matchCol, matchValue))
+  if(is_present_conditional_and(response, tabReference, matchCol, matchValue))
     return "UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
-  
+
   var rowData = []
   for(var i=0; i<values.length; i++) {
-    var t = values[i].toString
     rowData[colMap[i]] = JSON.stringify(values[i]);
   }
   tabReference.appendRow(rowData)

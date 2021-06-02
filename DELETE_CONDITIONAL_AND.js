@@ -1,4 +1,4 @@
-function delete_conditional_and(tabReference, dataColumn, dataValue) {
+function delete_conditional_and(response, tabReference, dataColumn, dataValue) {
   var rows = tabReference.getDataRange();
   var numRows = rows.getNumRows();
   var values = rows.getValues();

@@ -1,4 +1,4 @@
-function fetch_by_condition_and(tabReference, matchCol, matchValue) {
+function fetch_by_condition_and(response, tabReference, matchCol, matchValue) {
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });

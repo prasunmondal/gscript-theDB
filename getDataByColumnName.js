@@ -1,4 +1,4 @@
-function getDataByColumnName(tabReference, matchCol, matchValue) {
+function getDataByColumnName(response, tabReference, matchCol, matchValue) {
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });

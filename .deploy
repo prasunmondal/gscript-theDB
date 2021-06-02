@@ -1,14 +1,3 @@
-clasp undeploy --all
-clasp pull
-clasp push
-clasp deploy
-echo $(clasp deploy) | awk '{print $5;}'
-clasp undeploy @12
-
-
-
-
-
 echo $(clasp deploy) | awk '{print $5;}' > /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/deploymentID
 value=$(</Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/deploymentID)
 cp -f /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/DeploymentIDTemplate.txt /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/DeploymentID.kt
