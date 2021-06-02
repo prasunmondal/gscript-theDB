@@ -1,5 +1,8 @@
 clasp push
+echo "Deploying the code..."
 echo $(clasp deploy) | awk '{print $5;}' > /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/deploymentID
 value=$(</Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/deploymentID)
 cp -f /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/DeploymentIDTemplate.txt /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/DeploymentID.kt
 sed -i '' -e "s/<deploymentID>/$value/g" /Users/prasun/github/TechBrowse/postJSONtoSheet/app/src/main/java/com/prasunmondal/postjsontosheets/operations/DeploymentID.kt
+echo "Deployment Complete."
+echo "Deployment ID: $value"
