@@ -45,8 +45,8 @@ function doPost(request) {
     var tabReference = sheetReference.getSheetByName(tabName);
     var response = {};
 
-    response.responseCode = 0
     response.operation = operation
+    response.responseCode = 0
 
     var idempotentOperations = ["INSERT_OBJECT", "INSERT_OBJECT_UNIQUE", "INSERT_RAW_OBJECT", "DELETE_CONDITIONAL_AND",
     "DELETE_ALL", "DELETE_CONDITIONAL_OR"]

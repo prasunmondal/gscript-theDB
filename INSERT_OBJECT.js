@@ -10,8 +10,7 @@ function insert_object(response, tabReference, jsonString) {
        rowData[colMap[i]] = JSON.stringify(values[i]);
    }
    tabReference.appendRow(rowData)
-    response.responseCode = 201;
-   return "Data Inserted Successfully."
+   return "200: INSERTED SUCCESSFULLY."
 }
 
 function getColumnMap(keys, headers) {

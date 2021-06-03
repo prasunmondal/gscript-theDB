@@ -34,6 +34,5 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
     rowData[colMap[i]] = JSON.stringify(values[i]);
   }
   tabReference.appendRow(rowData)
-  response.responseCode = 201;
-  return "Data Inserted Successfully."
+  return "200: INSERTED SUCCESSFULLY."
 }

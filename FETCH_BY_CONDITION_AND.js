@@ -14,6 +14,5 @@ function fetch_by_condition_and(response, tabReference, matchCol, matchValue) {
       data.push(record);
     }
   }
-  response.responseCode = 200;
   return data;
 }

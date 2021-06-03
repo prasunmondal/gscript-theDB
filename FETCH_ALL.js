@@ -16,6 +16,5 @@ function fetch_all(response, tabReference) {
     }
     data.push(record);
   }
-  response.responseCode = 200;
   return data;
 }
