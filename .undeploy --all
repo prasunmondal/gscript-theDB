@@ -1,0 +1,3 @@
+echo "Un-deploying all deployments!"
+clasp undeploy --all
+
