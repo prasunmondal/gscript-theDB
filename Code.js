@@ -81,14 +81,18 @@ function doPost(request) {
     } else if (operation == "FETCH_BY_CONDITION_AND") {
       response.records = fetch_by_condition_and(response, tabReference, dataColumn, dataValue);
     } else {
-      throw "Error: Illegal opCode. Invalid Operation type - " + operation;
+      response.responseCode = 400
+      response.records = "Bad Request: Illegal opCode. Invalid Operation type - " + operation;
     }
     return generateOutput(response, request);
   } catch (err) {
-    response.responseCode = 300
-    response.errorStack = err.stack
+    if(err.scriptStackTraceElements.length > 0)
+      response.isUnhandledError = true
+    else
+      response.isUnhandledError = false
+
     response.data = "FAILED: " + err.scriptStackTraceElements;
-    // response.errortrace =
+    response.errorStack = err.stack
     return generateOutput(response, request)
   }
 }
