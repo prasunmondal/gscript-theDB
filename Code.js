@@ -86,6 +86,7 @@ function doPost(request) {
     return generateOutput(response, request);
   } catch (err) {
     response.responseCode = 300
+    response.errorStack = err.stack
     response.data = "FAILED: " + err.scriptStackTraceElements;
     // response.errortrace =
     return generateOutput(response, request)
@@ -97,5 +98,13 @@ function getHeaderRow_(tabReference) {
 }
 
 function getDataRows_(tabReference) {
+  if(!isDataRowsPresent(tabReference))
+    return []
   return tabReference.getRange(2, 1, tabReference.getLastRow() - 1, tabReference.getLastColumn()).getValues();
+}
+
+function isDataRowsPresent(tabReference) {
+  if(tabReference.getLastRow()==1)
+    return false;
+  return true;
 }
