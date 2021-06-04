@@ -22,13 +22,16 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
     }
   }
 
-  if(is_present_conditional_and(response, tabReference, matchCol, matchValue))
+  if(is_present_conditional_and(response, tabReference, matchCol, matchValue)) {
+    response.responseCode = 409;
     return "UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
+  }
 
   var rowData = []
   for(var i=0; i<values.length; i++) {
     rowData[colMap[i]] = JSON.stringify(values[i]);
   }
   tabReference.appendRow(rowData)
-  return "200: INSERTED SUCCESSFULLY."
+  response.responseCode = 201;
+  return "Data Record Created."
 }

@@ -1,4 +1,5 @@
 function saveDataRaw(response, jsonString, tabReference) {
   tabReference.appendRow([jsonString])
-  return "200: INSERTED SUCCESSFULLY"
+  response.responseCode = 201;
+  return "Data Record Created.";
 }

@@ -10,6 +10,7 @@ FETCH_BY_CONDITION_AND                 -- done
 FETCH_BY_CONDITION_DATE_GT             --
 FETCH_BY_CONDITION_DATE_EQ             --
 FETCH_BY_CONDITION_DATE_LT             --
+FETCH_VALUE                            --
 
 INSERT_SEQUENTIAL                      --
 INSERT_SEQUENTIAL_FULL_UNIQUE          --
@@ -30,6 +31,11 @@ DELETE_CONDITIONAL_AND                 -- done
 */
 
 function doPost(request) {
+
+  var response = {};
+  response.responseCode = 0
+  response.operation = request.parameter.opCode
+
   try {
     var operation = request.parameter.opCode;
     var sheetId = request.parameter.sheetId;
@@ -43,10 +49,6 @@ function doPost(request) {
 
     var sheetReference = SpreadsheetApp.openById(sheetId);
     var tabReference = sheetReference.getSheetByName(tabName);
-    var response = {};
-
-    response.operation = operation
-    response.responseCode = 0
 
     var idempotentOperations = ["INSERT_OBJECT", "INSERT_OBJECT_UNIQUE", "INSERT_RAW_OBJECT", "DELETE_CONDITIONAL_AND",
     "DELETE_ALL", "DELETE_CONDITIONAL_OR"]
@@ -91,6 +93,9 @@ function doPost(request) {
     else
       response.isUnhandledError = false
 
+    if(response.responseCode == 0) {
+      response.responseCode = 500;
+    }
     response.data = "FAILED: " + err.scriptStackTraceElements;
     response.errorStack = err.stack
     return generateOutput(response, request)
