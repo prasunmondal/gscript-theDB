@@ -6,11 +6,12 @@ function fetch_by_condition_and(response, tabReference, matchCol, matchValue) {
 
   var rows = getDataRows(tabReference), data = [];
   for (var r = 0, l = rows.length; r < l; r++) {
-    var row = rows[r], record  = {};
+    var row = rows[r];
     if(util_match_and(tabReference, matchValue, matchCol, row)) {
-      for (var p in properties) {
-      record[properties[p]] = row[p];
-      }
+      var record  = {};
+      for (var p in properties)
+        record[properties[p]] = row[p];
+
       data.push(record);
     }
   }
