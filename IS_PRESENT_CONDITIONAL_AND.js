@@ -1,5 +1,5 @@
 function is_present_conditional_and(response, tabReference, matchCol, matchValue) {
-  var rows = getDataRows_(tabReference);
+  var rows = getDataRows(tabReference);
   if(rows.length == 0) {
     return false
   }

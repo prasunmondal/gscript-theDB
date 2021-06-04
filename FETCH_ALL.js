@@ -1,10 +1,10 @@
 function fetch_all(response, tabReference) {
   if (typeof properties == "undefined") {
-    properties = getHeaderRow_(tabReference);
+    properties = getHeaderRow(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
   
-  var rows = getDataRows_(tabReference),
+  var rows = getDataRows(tabReference),
       data = [];
 
   for (var r = 0, l = rows.length; r < l; r++) {

@@ -1,6 +1,6 @@
 function util_match_and(tabReference, matchValue, matchCol, row)
 {
-  if(getDataRows_(tabReference).length == 0)
+  if(getDataRows(tabReference).length == 0)
     return false
   var matchValuesArray = matchValue.split(",")
   var matchColNamesArray = matchCol.split(",")

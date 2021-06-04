@@ -1,6 +1,6 @@
 function insert_object(response, tabReference, jsonString) {
    var data = JSON.parse(jsonString);
-   var headers = getHeaderRow_(tabReference);
+   var headers = getHeaderRow(tabReference);
    var keys = Object.keys(data);
    var values = Object.values(data);
    var colMap = getColumnMap(keys, headers)

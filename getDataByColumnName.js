@@ -1,13 +1,13 @@
 function getDataByColumnName(response, tabReference, matchCol, matchValue) {
   if (typeof properties == "undefined") {
-    properties = getHeaderRow_(tabReference);
+    properties = getHeaderRow(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
 
   matchCol = util_getColumnNumberFromColumnName(tabReference, matchCol)
   
   var matchValues = matchValue.split(',');
-  var rows = getDataRows_(tabReference),
+  var rows = getDataRows(tabReference),
       data = [];
 
   for (var r = 0, l = rows.length; r < l; r++) {

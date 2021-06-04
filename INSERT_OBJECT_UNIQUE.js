@@ -4,7 +4,7 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
 
   var keys = Object.keys(data);
   var values = Object.values(data);
-  var headers = getHeaderRow_(tabReference);
+  var headers = getHeaderRow(tabReference);
   var colMap = getColumnMap(keys, headers);
 
   matchCol = ""

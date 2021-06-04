@@ -1,5 +1,5 @@
 function is_present_conditional_or(response, tabReference, matchCol, matchValue) {
-  var rows = getDataRows_(tabReference);
+  var rows = getDataRows(tabReference);
 
   for (var r = 0, l = rows.length; r < l; r++) {
     var row     = rows[r];

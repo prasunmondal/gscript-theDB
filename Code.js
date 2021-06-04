@@ -93,11 +93,11 @@ function doPost(request) {
   }
 }
 
-function getHeaderRow_(tabReference) {
+function getHeaderRow(tabReference) {
   return tabReference.getRange(1, 1, 1, tabReference.getLastColumn()).getValues()[0];
 }
 
-function getDataRows_(tabReference) {
+function getDataRows(tabReference) {
   if(!isDataRowsPresent(tabReference))
     return []
   return tabReference.getRange(2, 1, tabReference.getLastRow() - 1, tabReference.getLastColumn()).getValues();
