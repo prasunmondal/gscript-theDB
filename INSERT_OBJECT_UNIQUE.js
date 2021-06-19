@@ -18,7 +18,7 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
         matchValue += ","
       }
       matchCol += keys[i];
-      matchValue += JSON.stringify(values[i]);
+      matchValue += util_sanitize_value(JSON.stringify(values[i]));
     }
   }
 
@@ -29,7 +29,7 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
 
   var rowData = []
   for(var i=0; i<values.length; i++) {
-    rowData[colMap[i]] = JSON.stringify(values[i]);
+    rowData[colMap[i]] = rowData[colMap[i]] = util_sanitize_value(JSON.stringify(values[i]));
   }
   tabReference.appendRow(rowData)
   response.responseCode = 201;

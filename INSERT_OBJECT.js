@@ -7,7 +7,7 @@ function insert_object(response, tabReference, jsonString) {
 
    var rowData = []
    for(var i=0; i<values.length; i++) {
-       rowData[colMap[i]] = JSON.stringify(values[i]);
+       rowData[colMap[i]] = util_sanitize_value(JSON.stringify(values[i]));
    }
    tabReference.appendRow(rowData)
     response.responseCode = 201;
