@@ -60,6 +60,8 @@ function doPost(request) {
 
     if (operation == "INSERT_OBJECT") {
       response.records = insert_object(response, tabReference, objectData);
+    } else if (operation == "INSERT_DATA_SEQUENCE") {
+      response.records = insert_data_sequence(response, tabReference, dataValue);
     } else if (operation == "INSERT_OBJECT_UNIQUE") {
       response.records = insert_object_unique(response, tabReference, objectData, uniqueCol);
     } else if (operation == "INSERT_RAW_OBJECT") {
