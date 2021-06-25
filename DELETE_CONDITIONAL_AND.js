@@ -15,5 +15,6 @@ function delete_conditional_and(response, tabReference, dataColumn, dataValue) {
   }
   lock.releaseLock()
   response.responseCode = 200;
+  response.rows_deleted = rowsDeleted
   return "SUCCESS: " + rowsDeleted + " row(s) deleted";
 }

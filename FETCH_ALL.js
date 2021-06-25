@@ -3,7 +3,8 @@ function fetch_all(response, tabReference) {
     properties = getHeaderRow(tabReference);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
-  
+
+  var no_of_records_found = 0
   var rows = getDataRows(tabReference),
       data = [];
 
@@ -15,7 +16,9 @@ function fetch_all(response, tabReference) {
       record[properties[p]] = row[p];
     }
     data.push(record);
+    no_of_records_found += 1
   }
   response.responseCode = 200;
+  response.no_of_records_found = no_of_records_found
   return data;
 }
