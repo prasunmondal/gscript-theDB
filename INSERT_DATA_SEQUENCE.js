@@ -9,5 +9,6 @@ function insert_data_sequence(response, tabReference, dataValue) {
     }
     tabReference.appendRow(rowData)
     response.responseCode = 201;
+    response.rows_affected = 1;
     return "Data Record Created."
 }

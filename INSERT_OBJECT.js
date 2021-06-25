@@ -11,6 +11,7 @@ function insert_object(response, tabReference, jsonString) {
    }
    tabReference.appendRow(rowData)
     response.responseCode = 201;
+    response.rows_affected = 1;
    return "Data Record Created."
 }
 

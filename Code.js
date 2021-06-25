@@ -57,6 +57,7 @@ function doPost(request) {
     } else {
       response.lockedOperation = false
     }
+    response.rows_affected = 0;
 
     if (operation == "INSERT_OBJECT") {
       response.records = insert_object(response, tabReference, objectData);

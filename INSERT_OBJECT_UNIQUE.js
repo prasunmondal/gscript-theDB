@@ -33,5 +33,6 @@ function insert_object_unique(response, tabReference, jsonString, searchColumn) 
   }
   tabReference.appendRow(rowData)
   response.responseCode = 201;
+  response.rows_affected = 1;
   return "Data Record Created."
 }
