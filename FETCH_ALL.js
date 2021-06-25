@@ -18,7 +18,11 @@ function fetch_all(response, tabReference) {
     data.push(record);
     no_of_records_found += 1
   }
-  response.responseCode = 200;
+
   response.no_of_records_found = no_of_records_found
+  response.responseCode = 200;
+  if(response.no_of_records_found == 0)
+    response.responseCode = 204;
+
   return data;
 }
