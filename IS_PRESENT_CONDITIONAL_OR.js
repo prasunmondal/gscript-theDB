@@ -1,4 +1,8 @@
 function is_present_conditional_or(response, tabReference, matchCol, matchValue) {
+  if(!isSheetEmpty(tabReference)) {
+    response.responseCode = 204;
+    return false;
+  }
   var rows = getDataRows(tabReference);
   if(rows.length == 0) {
     response.responseCode = 204;
@@ -12,6 +16,6 @@ function is_present_conditional_or(response, tabReference, matchCol, matchValue)
       return true;
     }
   }
-  response.responseCode = 200;
+  response.responseCode = 204;
   return false;
 }

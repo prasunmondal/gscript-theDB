@@ -91,10 +91,10 @@ function doPost(request) {
     }
     return generateOutput(response, request);
   } catch (err) {
-    if(err.scriptStackTraceElements.length > 0)
-      response.isUnhandledError = true
-    else
-      response.isUnhandledError = false
+    // if(err.scriptStackTraceElements.length > 0)
+    //   response.isUnhandledError = true
+    // else
+    //   response.isUnhandledError = false
 
     if(response.responseCode == 0) {
       response.responseCode = 500;

@@ -1,4 +1,5 @@
 function insert_object(response, tabReference, jsonString) {
+    if(!isSheetEmpty(tabReference)) {
    var data = JSON.parse(jsonString);
    var headers = getHeaderRow(tabReference);
    var keys = Object.keys(data);
