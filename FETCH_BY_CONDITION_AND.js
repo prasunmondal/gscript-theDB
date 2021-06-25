@@ -18,9 +18,9 @@ function fetch_by_condition_and(response, tabReference, matchCol, matchValue) {
     }
   }
 
-  response.no_of_records_found = no_of_records_found
+  response.rows_affected = no_of_records_found
   response.responseCode = 200;
-  if(response.no_of_records_found == 0)
+  if(response.rows_affected == 0)
     response.responseCode = 204;
 
   return data;

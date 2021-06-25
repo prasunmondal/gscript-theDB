@@ -10,9 +10,9 @@ function delete_all(response, tabReference) {
   }
   lock.releaseLock()
 
-  response.rows_deleted = rowsDeleted
+  response.rows_affected = rowsDeleted
   response.responseCode = 200
-  if(response.rows_deleted == 0)
+  if(response.rows_affected == 0)
     response.responseCode = 204
 
   return "SUCCESS: " + rowsDeleted + " row(s) deleted";
