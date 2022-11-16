@@ -9,10 +9,9 @@ function fetch_by_condition_and(response, tabReference, matchCol, matchValue) {
         return p.replace(/\s+/g, '_');
       });
     }
-    var colMap = util_getColumnNameNumberMap(tabReference)
     for (var r = 0, l = rows.length; r < l; r++) {
       var row = rows[r];
-      if (util_match_and(tabReference, colMap, matchValue, matchCol, row)) {
+      if (util_match_and(tabReference, matchValue, matchCol, row)) {
         var record = {};
         for (var p in properties)
           record[properties[p]] = row[p];

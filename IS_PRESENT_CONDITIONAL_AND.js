@@ -8,10 +8,9 @@ function is_present_conditional_and(response, tabReference, matchCol, matchValue
     response.responseCode = 204;
     return false
   }
-  var colMap = util_getColumnNameNumberMap(tabReference)
   for (var r = 0, l = rows.length; r < l; r++) {
     var row = rows[r];
-    if(util_match_and(tabReference, colMap, matchValue, matchCol, row)) {
+    if(util_match_and(tabReference, matchValue, matchCol, row)) {
       response.responseCode = 200;
       return true;
     }

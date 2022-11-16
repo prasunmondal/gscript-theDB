@@ -6,10 +6,9 @@ function delete_conditional_and(response, tabReference, dataColumn, dataValue) {
   var rowsDeleted = 0;
   var lock = LockService.getScriptLock();
 
-  var colMap = util_getColumnNameNumberMap(tabReference)
   for (var i = numRows - 1; i >= 0; i--) {
     var row = values[i];
-    if (util_match_and(tabReference, colMap, dataValue, dataColumn, row) && rowsDeleted < 1) {
+    if (util_match_and(tabReference, dataValue, dataColumn, row)) {
       tabReference.deleteRow((parseInt(i)+1));
       rowsDeleted++;
     }
