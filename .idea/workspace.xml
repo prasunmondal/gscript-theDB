@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8105eb75-0769-4f7e-bc82-c7c8555434be" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.clasp.json" beforeDir="false" afterPath="$PROJECT_DIR$/.clasp.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinMultiplatform">
+    <allAvailableExecutables />
   </component>
   <component name="ProjectId" id="1tFtCH02PMEEsCrVMaQWBr8xOCq" />
   <component name="ProjectViewState">
@@ -49,6 +53,7 @@
       </method>
     </configuration>
     <configuration name="Push N Deploy" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.pushDeploy" />
       <option name="SCRIPT_OPTIONS" value="" />
@@ -58,10 +63,12 @@
       <option name="INTERPRETER_PATH" value="/bin/zsh" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
       <envs />
       <method v="2" />
     </configuration>
     <configuration name="Undeploy All" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.undeploy --all" />
       <option name="SCRIPT_OPTIONS" value="" />
@@ -71,6 +78,7 @@
       <option name="INTERPRETER_PATH" value="/bin/zsh" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
       <envs />
       <method v="2" />
     </configuration>
@@ -89,6 +97,7 @@
       <updated>1622376535829</updated>
       <workItem from="1622376537040" duration="29678000" />
       <workItem from="1622646964133" duration="2626000" />
+      <workItem from="1710420016315" duration="962000" />
     </task>
     <servers />
   </component>

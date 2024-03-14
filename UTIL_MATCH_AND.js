@@ -1,11 +1,9 @@
-function util_match_and(tabReference, matchValue, matchCol, row)
+function util_match_and(ss, sheetname, matchValue, matchCol, row)
 {
-  if(getDataRows(tabReference).length == 0)
-    return false
   var matchValuesArray = matchValue.split(",")
   var matchColNamesArray = matchCol.split(",")
   for(var i=0; i<matchColNamesArray.length; i++) {
-    if(matchValuesArray[i] != row[util_getColumnNumberFromColumnName(tabReference, matchColNamesArray[i])]) {
+    if(matchValuesArray[i] != row[util_getColumnNumberFromColumnName(ss, sheetname, matchColNamesArray[i])]) {
       return false;
     }
   }

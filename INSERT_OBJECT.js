@@ -1,19 +1,21 @@
-function insert_object(response, tabReference, jsonString) {
-    if(!isSheetEmpty(tabReference)) {
+function insert_object(jsonString, request1) {
+  var sheetId = request1.parameter.sheetId;
+   var tabName = request1.parameter.tabName;
    var data = JSON.parse(jsonString);
-   var headers = getHeaderRow(tabReference);
+   
+   var ss= SpreadsheetApp.openById(sheetId);
+   var headers = getHeaderRow_(ss, tabName);
    var keys = Object.keys(data);
    var values = Object.values(data);
    var colMap = getColumnMap(keys, headers)
 
    var rowData = []
    for(var i=0; i<values.length; i++) {
-       rowData[colMap[i]] = util_sanitize_value(JSON.stringify(values[i]));
+    rowData[colMap[i]] = JSON.stringify(values[i]).replace('"','').replace('"','');
    }
-   tabReference.appendRow(rowData)
-    response.responseCode = 201;
-    response.rows_affected = 1;
-   return "Data Record Created."
+   var sheet=ss.getSheetByName(tabName);
+   sheet.appendRow(rowData)
+   return "200: INSERTED SUCCESSFULLY."
 }
 
 function getColumnMap(keys, headers) {

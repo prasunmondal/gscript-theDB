@@ -1,13 +1,15 @@
-function getDataByColumnName(response, tabReference, matchCol, matchValue) {
+function getDataByColumnName(ss, sheetname, matchCol, matchValue, properties) {
+  var str = "";
   if (typeof properties == "undefined") {
-    properties = getHeaderRow(tabReference);
+    properties = getHeaderRow_(ss, sheetname);
     properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
   }
 
-  matchCol = util_getColumnNumberFromColumnName(tabReference, matchCol)
+  matchCol = getColumnNumberFromColumnName(ss, sheetname, matchCol)
   
   var matchValues = matchValue.split(',');
-  var rows = getDataRows(tabReference),
+  str += "  - MatchValues: " + matchValues;
+  var rows = getDataRows_(ss, sheetname),
       data = [];
 
   for (var r = 0, l = rows.length; r < l; r++) {
@@ -17,8 +19,11 @@ function getDataByColumnName(response, tabReference, matchCol, matchValue) {
     for (var p in properties) {
       record[properties[p]] = row[p];
     }
-
-    if(matchValues == row[matchCol]) {
+    
+    str += "MatchCol Value: " + matchCol
+    str += "  - MatchCol: " + matchValues + "," + row[matchCol]
+    if(matchValues == row[matchCol]) { 
+      str += "  - MatchedData: " + record;
       data.push(record);
     }
   }
