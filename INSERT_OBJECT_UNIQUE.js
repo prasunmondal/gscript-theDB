@@ -4,7 +4,7 @@ function insert_object_unique(jsonString, request) {
   var data = JSON.parse(jsonString);
   var searchColumn = request.parameter.uniqueCol;
   matchColNamesArray = searchColumn.split(",")
-  var ss= SpreadsheetApp.openById(sheet);
+  var ss = SpreadsheetApp.openById(sheet);
 
   var keys = Object.keys(data);
   var values = Object.values(data);
@@ -16,12 +16,12 @@ function insert_object_unique(jsonString, request) {
   matchValue = ""
   matches = 0
   str += "1--";
-  for(var i=0; i<keys.length; i++) {
+  for (var i = 0; i < keys.length; i++) {
     str += "2-" + i + "-";
-    if(matchColNamesArray.indexOf(keys[i])+1) {
+    if (matchColNamesArray.indexOf(keys[i]) + 1) {
       matches++;
       str += "3-" + i + "-";
-      if(matches > 1) {
+      if (matches > 1) {
         matchCol += ","
         matchValue += ","
       }
@@ -29,16 +29,17 @@ function insert_object_unique(jsonString, request) {
       matchValue += JSON.stringify(values[i]);
     }
   }
-  
-  if(is_present_conditional_and(ss, tabName, matchCol, matchValue))
+
+  if (is_present_conditional_and(ss, tabName, matchCol, matchValue)) {
     return "UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
-  
+  }
+
   var rowData = []
-  for(var i=0; i<values.length; i++) {
+  for (var i = 0; i < values.length; i++) {
     var t = values[i].toString
     rowData[colMap[i]] = JSON.stringify(values[i]);
   }
-  var sheet=ss.getSheetByName(tabName);
+  var sheet = ss.getSheetByName(tabName);
   sheet.appendRow(rowData)
   return "200: INSERTED SUCCESSFULLY."
 }

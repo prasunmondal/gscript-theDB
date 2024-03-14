@@ -1,21 +1,24 @@
-function fetch_by_condition_and(ss, sheetname, matchCol, matchValue, properties) {
+function fetch_by_condition_and(ss, sheetname, matchCol, matchValue,
+    properties) {
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(ss, sheetname);
-    properties = properties.map(function(p) { return p.replace(/\s+/g, '_'); });
+    properties = properties.map(function (p) {
+      return p.replace(/\s+/g, '_');
+    });
   }
-  
+
   var rows = getDataRows_(ss, sheetname),
       data = [];
 
   for (var r = 0, l = rows.length; r < l; r++) {
-    var row     = rows[r],
-        record  = {};
+    var row = rows[r],
+        record = {};
 
     for (var p in properties) {
       record[properties[p]] = row[p];
     }
 
-    if(util_match_and(ss, sheetname, matchValue, matchCol, row)) {
+    if (util_match_and(ss, sheetname, matchValue, matchCol, row)) {
       data.push(record);
     }
   }

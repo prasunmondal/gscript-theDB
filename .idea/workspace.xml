@@ -3,7 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8105eb75-0769-4f7e-bc82-c7c8555434be" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.clasp.json" beforeDir="false" afterPath="$PROJECT_DIR$/.clasp.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code.js" beforeDir="false" afterPath="$PROJECT_DIR$/Code.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DELETE_ALL.js" beforeDir="false" afterPath="$PROJECT_DIR$/DELETE_ALL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DELETE_CONDITIONAL_AND.js" beforeDir="false" afterPath="$PROJECT_DIR$/DELETE_CONDITIONAL_AND.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DELETE_CONDITIONAL_OR.js" beforeDir="false" afterPath="$PROJECT_DIR$/DELETE_CONDITIONAL_OR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FETCH_ALL.js" beforeDir="false" afterPath="$PROJECT_DIR$/FETCH_ALL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FETCH_ALL_MULTIPLE_TABS.js" beforeDir="false" afterPath="$PROJECT_DIR$/FETCH_ALL_MULTIPLE_TABS.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FETCH_BY_CONDITION_AND.js" beforeDir="false" afterPath="$PROJECT_DIR$/FETCH_BY_CONDITION_AND.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FETCH_BY_CONDITION_OR.js" beforeDir="false" afterPath="$PROJECT_DIR$/FETCH_BY_CONDITION_OR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INSERT_DATA_SEQUENCE.js" beforeDir="false" afterPath="$PROJECT_DIR$/INSERT_DATA_SEQUENCE.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INSERT_OBJECT.js" beforeDir="false" afterPath="$PROJECT_DIR$/INSERT_OBJECT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INSERT_OBJECT_UNIQUE.js" beforeDir="false" afterPath="$PROJECT_DIR$/INSERT_OBJECT_UNIQUE.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IS_PRESENT_CONDITIONAL_AND.js" beforeDir="false" afterPath="$PROJECT_DIR$/IS_PRESENT_CONDITIONAL_AND.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IS_PRESENT_CONDITIONAL_OR.js" beforeDir="false" afterPath="$PROJECT_DIR$/IS_PRESENT_CONDITIONAL_OR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAVE_RAW_OBJECT.js" beforeDir="false" afterPath="$PROJECT_DIR$/SAVE_RAW_OBJECT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UTIL_MATCH_AND.js" beforeDir="false" afterPath="$PROJECT_DIR$/UTIL_MATCH_AND.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UTIL_MATCH_OR.js" beforeDir="false" afterPath="$PROJECT_DIR$/UTIL_MATCH_OR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UTIL_SanitizeValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/UTIL_SanitizeValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generateOutput.js" beforeDir="false" afterPath="$PROJECT_DIR$/generateOutput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getDataByColumnName.js" beforeDir="false" afterPath="$PROJECT_DIR$/getDataByColumnName.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util_getColumnNumberFromColumnName.js" beforeDir="false" afterPath="$PROJECT_DIR$/util_getColumnNumberFromColumnName.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +116,7 @@
       <updated>1622376535829</updated>
       <workItem from="1622376537040" duration="29678000" />
       <workItem from="1622646964133" duration="2626000" />
-      <workItem from="1710420016315" duration="962000" />
+      <workItem from="1710420016315" duration="1219000" />
     </task>
     <servers />
   </component>
