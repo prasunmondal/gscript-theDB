@@ -11,9 +11,9 @@ function fetch_by_query(ss, sheetname, request, properties) {
     });
   }
 
-  var query = request.parameter.query
-  query = substituteColValues(ss, sheetname, query)
-  tempTab.getRange("a2").setFormula(query).getValues();
+  var query = '=' + substituteColValues(ss, sheetname, request.parameter.query)
+  var sh = ss.getSheetByName(sheetname);
+  var rows = tempTab.getRange("a2").setFormula(query).getValues();
 
   const data = fetch_all(ss, tempTab.getName(), properties)
   ss.deleteSheet(tempTab);
@@ -26,13 +26,17 @@ function getSubstringsMatchingRegex(text, regexPattern) {
   return matches;
 }
 
-function substituteColValues(ss, sheetname, query) {
-  const colNames = getSubstringsMatchingRegex(query, /Col:([^ ]*)/gm)
+function substituteColValues(ss, sheetname, text) {
+  const colNames = getSubstringsMatchingRegex(text, /Col:([^ ]*)/gm)
+  if(colNames == null)
+    return text
   const columnNumbersMap = util_getColumnNumbersMap(ss, sheetname)
   colNames.forEach(function(item, index) {
     const colName = item.split(":")[1]
-    query = query.replace(item, util_getColumnNumberFromColumnNameUsingColMap(columnNumbersMap, colName))
+    const colNo = parseInt(util_getColumnNumberFromColumnNameUsingColMap(columnNumbersMap, colName),10) + 1
+    text = text.replace(item, "Col" + colNo)
   });
+  return text
 }
 
 // generates random string

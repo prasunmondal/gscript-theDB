@@ -18,7 +18,7 @@ function util_getColumnNumbersMap(ss, sheetname) {
 
 function util_getColumnNumberFromColumnNameUsingColMap(colNameMap, name) {
   for (var col in colNameMap) {
-    if (properties[col] == name) {
+    if (colNameMap[col] == name) {
       return col
     }
   }
