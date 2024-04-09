@@ -17,19 +17,9 @@ function fetch_by_query(ss, sheetname, request, properties) {
   var sh = ss.getSheetByName(sheetname);
   var rows = tempTab.getRange("a2").setFormula(query).getValues();
 
-  // return sheetname + " : " + query + " : " + sh.getLastRow() + ": " + sh.getLastColumn() + " : " + rows + " : " + rows.length
-  data = [];
-  return fetch_all(ss, tempTab.getName(), properties)
-  for (var r = 0, l = rows.length; r < l; r++) {
-    var row = rows[r],
-        record = {};
-
-    for (var p in properties) {
-      record[properties[p]] = row[p];
-    }
-    data.push(record);
-  }
-  return data;
+  var data = fetch_all(ss, tempTab.getName(), properties)
+  ss.deleteSheet(tempTab);
+  return data
 }
 
 
