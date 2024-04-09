@@ -1,11 +1,9 @@
 function fetch_by_query(ss, sheetname, request, properties) {
 
   // Create a new Sheet
-  var tempTab = ss.insertSheet();
+  const tempTab = ss.insertSheet();
   tempTab.appendRow(getHeaderRow_(ss, sheetname));
-  
 
-  var str = "";
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(ss, sheetname);
     properties = properties.map(function (p) {
@@ -14,14 +12,28 @@ function fetch_by_query(ss, sheetname, request, properties) {
   }
 
   var query = request.parameter.query
-  var sh = ss.getSheetByName(sheetname);
-  var rows = tempTab.getRange("a2").setFormula(query).getValues();
+  query = substituteColValues(ss, sheetname, query)
+  tempTab.getRange("a2").setFormula(query).getValues();
 
-  var data = fetch_all(ss, tempTab.getName(), properties)
+  const data = fetch_all(ss, tempTab.getName(), properties)
   ss.deleteSheet(tempTab);
   return data
 }
 
+function getSubstringsMatchingRegex(text, regexPattern) {
+  var regex = new RegExp(regexPattern);
+  var matches = text.match(regex);
+  return matches;
+}
+
+function substituteColValues(ss, sheetname, query) {
+  const colNames = getSubstringsMatchingRegex(query, /Col:([^ ]*)/gm)
+  const columnNumbersMap = util_getColumnNumbersMap(ss, sheetname)
+  colNames.forEach(function(item, index) {
+    const colName = item.split(":")[1]
+    query = query.replace(item, util_getColumnNumberFromColumnNameUsingColMap(columnNumbersMap, colName))
+  });
+}
 
 // generates random string
 function randomStr(len) {

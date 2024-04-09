@@ -8,6 +8,18 @@ function util_getColumnNumberFromColumnName(ss, sheetname, name) {
       return p
     }
   }
-  return "column not found. " + name;
+  return "Column Not Found. " + name;
   return -1
+}
+
+function util_getColumnNumbersMap(ss, sheetname) {
+  return getHeaderRow_(ss, sheetname);
+}
+
+function util_getColumnNumberFromColumnNameUsingColMap(colNameMap, name) {
+  for (var col in colNameMap) {
+    if (properties[col] == name) {
+      return col
+    }
+  }
 }
