@@ -11,7 +11,7 @@ function fetch_by_query(ss, sheetname, request, properties) {
     });
   }
 
-  var query = '=' + substituteColValues(ss, sheetname, request.parameter.query)
+  var query = substituteColValues(ss, sheetname, request.parameter.query)
   var sh = ss.getSheetByName(sheetname);
   var rows = tempTab.getRange("a2").setFormula(query).getValues();
 
