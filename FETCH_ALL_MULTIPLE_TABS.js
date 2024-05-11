@@ -1,7 +1,6 @@
 function fetch_all_multiple_tabs(ss, sheetname, properties) {
   dataCollection = {}
 
-  try {
     sheets = sheetname.split(',')
     for (var index in sheets) {
       var sheet = sheets[index].trim()
@@ -25,7 +24,4 @@ function fetch_all_multiple_tabs(ss, sheetname, properties) {
       dataCollection[sheet] = data
     }
     return dataCollection
-  } catch (e) {
-    return str
-  }
 }

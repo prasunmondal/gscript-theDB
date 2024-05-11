@@ -79,6 +79,10 @@ function doPost(request) {
       var data = {};
       data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
       return generateOutput(data, request);
+    } else if (operation == "FETCH_BY_QUERY") {
+      var data = {};
+      data.records = fetch_by_query(ss, tabName, request);
+      return generateOutput(data, request);
     } else if (operation == "FETCH_ALL") {
       var data = {};
       data.records = fetch_all(ss, tabName);
