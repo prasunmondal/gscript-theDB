@@ -25,14 +25,25 @@
 // DELETE_CONDITIONAL_AND                 -- done
 
 function doPost(request) {
+
+var str = ""
+  // Loop through the array of JSON objects
+  var jsonObjArray = JSON.parse(request.parameter.operations)
+  for (var i = 0; i < jsonObjArray.length; i++) {
+    var jsonObject = jsonObjArray[i];
+
+
   try {
-    var operation = request.parameter.opCode;
-    var sheetId = request.parameter.sheetId;
-    var tabName = request.parameter.tabName;
-    var dataColumn = request.parameter.dataColumn;
-    var dataValue = request.parameter.dataValue;
-    var uniqueCol = request.parameter.uniqueCol;
-    var objectData = request.parameter.objectData;
+    var operation = jsonObject.opCode;
+    var sheetId = jsonObject.sheetId;
+    var tabName = jsonObject.tabName;
+    var dataColumn = jsonObject.dataColumn;
+    var dataValue = jsonObject.dataValue;
+    var uniqueCol = jsonObject.uniqueCol;
+    var objectData = jsonObject.objectData;
+
+    str = str + "operation: " + operation + "sheetId: " + sheetId + "tabName: " + tabName + "dataColumn: " + dataColumn + "dataValue: " + dataValue + "uniqueCol: " + uniqueCol + "objectData: " + objectData
+    
 
     var ss = SpreadsheetApp.openById(sheetId);
 
@@ -41,71 +52,75 @@ function doPost(request) {
 
     if (operation == "INSERT_OBJECT") {
       return generateOutput(
-          insert_object(request.parameter.objectData, request), request)
-    } else if (operation == "INSERT_OBJECT_UNIQUE") {
-      return generateOutput(
-          insert_object_unique(request.parameter.objectData, request), request)
-    } else if (operation == "INSERT_RAW_OBJECT") {
-      return generateOutput(saveDataRaw(request.parameter.objectData, request),
-          request)
-    } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
-      var data = {};
-      data.records = is_present_conditional_or(ss, tabName, dataColumn,
-          dataValue);
-      return generateOutput(data, request);
-    } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
-      var data = {};
-      data.records = is_present_conditional_and(ss, tabName, dataColumn,
-          dataValue);
-      return generateOutput(data, request);
-    } else if (operation == "DELETE_ALL") {
-      var data = {};
-      data.records = delete_all(sheetId, tabName);
-      return generateOutput(data, request);
-    } else if (operation == "DELETE_CONDITIONAL_AND") {
-      var data = {};
-      data.records = delete_conditional_and(sheetId, tabName, dataColumn,
-          dataValue);
-      return generateOutput(data, request);
-    } else if (operation == "DELETE_CONDITIONAL_OR") {
-      var data = {};
-      data.records = delete_conditional_or(sheetId, tabName, dataColumn,
-          dataValue);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_OBJECT") {
-      var
-          keys = request.parameter.keys,
-          searchColumn = request.parameter.searchColumn;
-      var data = {};
-      data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_BY_QUERY") {
-      var data = {};
-      data.records = fetch_by_query(ss, tabName, request);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_ALL") {
-      var data = {};
-      data.records = fetch_all(ss, tabName);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_ALL_MULTIPLE_TABS") {
-      var data = {};
-      data.records = fetch_all_multiple_tabs(ss, tabName);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_BY_CONDITION_OR") {
-      var data = {};
-      data.records = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
-      return generateOutput(data, request);
-    } else if (operation == "FETCH_BY_CONDITION_AND") {
-      var data = {};
-      data.records = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
-      return generateOutput(data, request);
-    } else {
-      throw "Error: Illegal opCode. Invalid Operation type - "
-      + request.parameter.opCode;
+          insert_object(jsonObject)
+          , request)
     }
+    //  else if (operation == "INSERT_OBJECT_UNIQUE") {
+    //   return generateOutput(
+    //       insert_object_unique(jsonObject.objectData, request), request)
+    // } else if (operation == "INSERT_RAW_OBJECT") {
+    //   return generateOutput(saveDataRaw(jsonObject.objectData, request),
+    //       request)
+    // } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
+    //   var data = {};
+    //   data.records = is_present_conditional_or(ss, tabName, dataColumn,
+    //       dataValue);
+    //   return generateOutput(data, request);
+    // } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
+    //   var data = {};
+    //   data.records = is_present_conditional_and(ss, tabName, dataColumn,
+    //       dataValue);
+    //   return generateOutput(data, request);
+    // } else if (operation == "DELETE_ALL") {
+    //   var data = {};
+    //   data.records = delete_all(sheetId, tabName);
+    //   return generateOutput(data, request);
+    // } else if (operation == "DELETE_CONDITIONAL_AND") {
+    //   var data = {};
+    //   data.records = delete_conditional_and(sheetId, tabName, dataColumn,
+    //       dataValue);
+    //   return generateOutput(data, request);
+    // } else if (operation == "DELETE_CONDITIONAL_OR") {
+    //   var data = {};
+    //   data.records = delete_conditional_or(sheetId, tabName, dataColumn,
+    //       dataValue);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_OBJECT") {
+    //   var
+    //       keys = jsonObject.keys,
+    //       searchColumn = jsonObject.searchColumn;
+    //   var data = {};
+    //   data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_BY_QUERY") {
+    //   var data = {};
+    //   data.records = fetch_by_query(ss, tabName, request);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_ALL") {
+    //   var data = {};
+    //   data.records = fetch_all(ss, tabName);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_ALL_MULTIPLE_TABS") {
+    //   var data = {};
+    //   data.records = fetch_all_multiple_tabs(ss, tabName);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_BY_CONDITION_OR") {
+    //   var data = {};
+    //   data.records = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
+    //   return generateOutput(data, request);
+    // } else if (operation == "FETCH_BY_CONDITION_AND") {
+    //   var data = {};
+    //   data.records = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
+    //   return generateOutput(data, request);
+    // } else {
+    //   throw "Error: Illegal opCode. Invalid Operation type - "
+    //   + jsonObject.opCode;
+    // }
   } catch (err) {
     return generateOutput("FAILED: " + err, request)
   }
+  }
+  return generateOutput(str, request);
 }
 
 function getHeaderRow_(ss, sheetname) {

@@ -1,14 +1,13 @@
-function insert_object(jsonString, request1) {
-  var sheetId = request1.parameter.sheetId;
-  var tabName = request1.parameter.tabName;
-  var data = JSON.parse(jsonString);
-
+function insert_object(jsonObj) {
+  var sheetId = jsonObj.sheetId;
+  var tabName = jsonObj.tabName;
+  var data = JSON.parse(jsonObj.objectData);
   var ss = SpreadsheetApp.openById(sheetId);
   var headers = getHeaderRow_(ss, tabName);
   var keys = Object.keys(data);
   var values = Object.values(data);
   var colMap = getColumnMap(keys, headers)
-
+  
   var rowData = []
   for (var i = 0; i < values.length; i++) {
     rowData[colMap[i]] = JSON.stringify(values[i]).replace('"', '').replace('"',
