@@ -56,23 +56,15 @@ var str = ""
 
     if (operation == "INSERT_OBJECT") {
       var result = insert_object(jsonObject)
-      var response = {
-        "opId": opId,
-        "statusCode": result.statusCode,
-        "content": result.content,
-        "logs": logs
-      }
-      responseArray.push(response)
+      result.opId = opId
+      result.logs = logs
+      responseArray.push(result)
     }
      else if (operation == "INSERT_OBJECT_UNIQUE") {
       var result = insert_object_unique(jsonObject)
-      var response = {
-        "opId": opId,
-        "statusCode": result.statusCode,
-        "content": result.content,
-        "logs": logs
-      }
-      responseArray.push(response)
+      result.opId = opId
+      result.logs = logs
+      responseArray.push(result)
     }
      else if (operation == "INSERT_RAW_OBJECT") {
       var result = saveDataRaw(jsonObject)
