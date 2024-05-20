@@ -32,9 +32,9 @@ var str = ""
   // Loop through the array of JSON objects
   var jsonObjArray = JSON.parse(request.parameter.operations)
   for (var i = 0; i < jsonObjArray.length; i++) {
+    logs = ""
     var jsonObject = jsonObjArray[i];
-    logs += "Proceesing request: " + jsonObject.opCode + " - " + jsonObject.sheetId + " - " + jsonObject.tabName + " - " + jsonObject.objectData
-
+    logs += "Processing request: " + jsonObject.opCode + " - " + jsonObject.sheetId + " - " + jsonObject.tabName + " - " + jsonObject.objectData
 
   try {
     var operation = jsonObject.opCode;
@@ -64,10 +64,17 @@ var str = ""
       }
       responseArray.push(response)
     }
-    //  else if (operation == "INSERT_OBJECT_UNIQUE") {
-    //   return generateOutput(
-    //       insert_object_unique(jsonObject.objectData, request), request)
-    // } else if (operation == "INSERT_RAW_OBJECT") {
+     else if (operation == "INSERT_OBJECT_UNIQUE") {
+      var result = insert_object_unique(jsonObject)
+      var response = {
+        "opId": opId,
+        "statusCode": result.statusCode,
+        "content": result.content,
+        "logs": logs
+      }
+      responseArray.push(response)
+    }
+     // else if (operation == "INSERT_RAW_OBJECT") {
     //   return generateOutput(saveDataRaw(jsonObject.objectData, request),
     //       request)
     // } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {

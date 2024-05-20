@@ -1,8 +1,8 @@
-function insert_object_unique(jsonString, request) {
-  var sheet = request.parameter.sheetId;
-  var tabName = request.parameter.tabName;
-  var data = JSON.parse(jsonString);
-  var searchColumn = request.parameter.uniqueCol;
+function insert_object_unique(jsonObj) {
+  var sheet = jsonObj.sheetId;
+  var tabName = jsonObj.tabName;
+  var data = JSON.parse(jsonObj.objectData);
+  var searchColumn = jsonObj.uniqueCol;
   matchColNamesArray = searchColumn.split(",")
   var ss = SpreadsheetApp.openById(sheet);
 
@@ -31,7 +31,10 @@ function insert_object_unique(jsonString, request) {
   }
 
   if (is_present_conditional_and(ss, tabName, matchCol, matchValue)) {
-    return "UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
+    return {
+      "statusCode": 400,
+      "content": "Bad Request. UNIQUE CONSTRAINT VIOLATED for Columns: " + matchCol
+    }
   }
 
   var rowData = []
@@ -41,5 +44,8 @@ function insert_object_unique(jsonString, request) {
   }
   var sheet = ss.getSheetByName(tabName);
   sheet.appendRow(rowData)
-  return "200: INSERTED SUCCESSFULLY."
+  return {
+    "statusCode": 200,
+    "content": "INSERTED SUCCESSFULLY"
+  }
 }
