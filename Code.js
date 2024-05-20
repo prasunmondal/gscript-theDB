@@ -33,6 +33,7 @@ var str = ""
   var jsonObjArray = JSON.parse(request.parameter.operations)
   for (var i = 0; i < jsonObjArray.length; i++) {
     logs = ""
+    var result = {}
     var jsonObject = jsonObjArray[i];
     logs += "Processing request: " + jsonObject.opCode + " - " + jsonObject.sheetId + " - " + jsonObject.tabName + " - " + jsonObject.objectData
 
@@ -55,28 +56,16 @@ var str = ""
     var opId = jsonObject.opId
 
     if (operation == "INSERT_OBJECT") {
-      var result = insert_object(jsonObject)
-      result.opId = opId
-      result.logs = logs
-      responseArray.push(result)
+      result = insert_object(jsonObject)
     }
      else if (operation == "INSERT_OBJECT_UNIQUE") {
-      var result = insert_object_unique(jsonObject)
-      result.opId = opId
-      result.logs = logs
-      responseArray.push(result)
+      result = insert_object_unique(jsonObject)
     }
      else if (operation == "INSERT_RAW_OBJECT") {
-      var result = saveDataRaw(jsonObject)
-      result.opId = opId
-      result.logs = logs
-      responseArray.push(result)
+      result = saveDataRaw(jsonObject)
     }
      else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
-      var result = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
-      result.opId = opId
-      result.logs = logs
-      responseArray.push(result)
+      result = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
     }
      // else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
     //   var data = {};
@@ -131,7 +120,9 @@ var str = ""
   } catch (err) {
     return generateOutput("FAILED: " + err, request)
   }
-    
+    result.opId = opId
+    result.logs = logs
+    responseArray.push(result)
   }
   return generateOutput2(opId, responseArray, request)
   return generateOutput(str, request, logs);
