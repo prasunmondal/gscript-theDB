@@ -5,8 +5,14 @@ function is_present_conditional_and(ss, sheetname, matchCol, matchValue,
   for (var r = 0, l = rows.length; r < l; r++) {
     var row = rows[r];
     if (util_match_and(ss, sheetname, matchValue, matchCol, row)) {
-      return true;
+      return {
+        "statusCode": 200,
+        "content": true
+      }
     }
   }
-  return false;
+  return {
+    "statusCode": 200,
+    "content": false
+  }
 }

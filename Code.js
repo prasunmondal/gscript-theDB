@@ -66,13 +66,10 @@ function doPost(request) {
         result = saveDataRaw(jsonObject)
       } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
         result = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
+      } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
+        result = is_present_conditional_and(ss, tabName, dataColumn, dataValue);
       }
-      // else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
-      //   var data = {};
-      //   data.records = is_present_conditional_and(ss, tabName, dataColumn,
-      //       dataValue);
-      //   return generateOutput(data, request);
-      // } else if (operation == "DELETE_ALL") {
+      // else if (operation == "DELETE_ALL") {
       //   var data = {};
       //   data.records = delete_all(sheetId, tabName);
       //   return generateOutput(data, request);
