@@ -8,5 +8,8 @@ function delete_all(sheetId, tabName) {
   var lock = LockService.getScriptLock();
   sheet.deleteRows(2, numOfRows - 1);
   lock.releaseLock()
-  return "SUCCESS: " + rowsDeleted + " row(s) deleted";
+  return {
+    "statusCode": 200,
+    "content": "SUCCESS: " + (numOfRows - 1) + " row(s) deleted"
+  }
 }

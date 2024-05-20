@@ -68,12 +68,10 @@ function doPost(request) {
         result = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
       } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
         result = is_present_conditional_and(ss, tabName, dataColumn, dataValue);
+      } else if (operation == "DELETE_ALL") {
+        result = delete_all(sheetId, tabName);
       }
-      // else if (operation == "DELETE_ALL") {
-      //   var data = {};
-      //   data.records = delete_all(sheetId, tabName);
-      //   return generateOutput(data, request);
-      // } else if (operation == "DELETE_CONDITIONAL_AND") {
+      // else if (operation == "DELETE_CONDITIONAL_AND") {
       //   var data = {};
       //   data.records = delete_conditional_and(sheetId, tabName, dataColumn,
       //       dataValue);
