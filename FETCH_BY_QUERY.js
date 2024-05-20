@@ -28,12 +28,15 @@ function getSubstringsMatchingRegex(text, regexPattern) {
 
 function substituteColValues(ss, sheetname, text) {
   const colNames = getSubstringsMatchingRegex(text, /Col:([^ ]*)/gm)
-  if(colNames == null)
+  if (colNames == null) {
     return text
+  }
   const columnNumbersMap = util_getColumnNumbersMap(ss, sheetname)
-  colNames.forEach(function(item, index) {
+  colNames.forEach(function (item, index) {
     const colName = item.split(":")[1]
-    const colNo = parseInt(util_getColumnNumberFromColumnNameUsingColMap(columnNumbersMap, colName),10) + 1
+    const colNo = parseInt(
+        util_getColumnNumberFromColumnNameUsingColMap(columnNumbersMap,
+            colName), 10) + 1
     text = text.replace(item, "Col" + colNo)
   });
   return text
@@ -41,7 +44,10 @@ function substituteColValues(ss, sheetname, text) {
 
 // generates random string
 function randomStr(len) {
-    var len = len || 15; s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i=0; i < len; i++) { s += r.charAt(Math.floor(Math.random()*r.length)); }
-    return s
+  var len = len || 15;
+  s = '', r = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < len; i++) {
+    s += r.charAt(Math.floor(Math.random() * r.length));
+  }
+  return s
 };
