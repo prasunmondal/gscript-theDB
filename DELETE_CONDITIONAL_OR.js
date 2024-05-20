@@ -16,8 +16,9 @@ function delete_conditional_or(sheetId, tabName, dataColumn, dataValue) {
     }
   }
   lock.releaseLock()
+  var statusCode = (rowsDeleted.length > 0)? 200 : 204
   return {
-    "statusCode": 200,
+    "statusCode": statusCode,
     "content": "SUCCESS: " + rowsDeleted + " row(s) deleted",
     "rowsAffected": rowsDeleted
   }

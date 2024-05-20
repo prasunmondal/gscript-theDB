@@ -7,8 +7,10 @@ function delete_all(sheetId, tabName) {
   var lock = LockService.getScriptLock();
   sheet.deleteRows(2, numOfRows - 1);
   lock.releaseLock()
+
+  var statusCode = ((numOfRows - 1) > 0)? 200 : 204
   return {
-    "statusCode": 200,
+    "statusCode": statusCode,
     "content": "SUCCESS: " + (numOfRows - 1) + " row(s) deleted",
     "rowsAffected": (numOfRows - 1)
   }

@@ -90,8 +90,9 @@ function doPost(request) {
       // }
       else if (operation == "FETCH_ALL") {
         var outputData = fetch_all(ss, tabName);
+        var statusCode = (outputData.length > 0)? 200 : 204
         result = {
-          "statusCode": 200,
+          "statusCode": statusCode,
           "content": outputData,
           "rowsAffected": outputData.length
         }
@@ -102,18 +103,18 @@ function doPost(request) {
           //   return generateOutput(data, request);
       // }
       else if (operation == "FETCH_BY_CONDITION_OR") {
-        var outputData = fetch_by_condition_or(ss, tabName, dataColumn,
-            dataValue);
+        var outputData = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
+        var statusCode = (outputData.length > 0)? 200 : 204
         result = {
-          "statusCode": 200,
+          "statusCode": statusCode,
           "content": outputData,
           "rowsAffected": outputData.length
         }
       } else if (operation == "FETCH_BY_CONDITION_AND") {
-        var outputData = fetch_by_condition_and(ss, tabName, dataColumn,
-            dataValue);
+        var outputData = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
+        var statusCode = (outputData.length > 0)? 200 : 204
         result = {
-          "statusCode": 200,
+          "statusCode": statusCode,
           "content": outputData,
           "rowsAffected": outputData.length
         }

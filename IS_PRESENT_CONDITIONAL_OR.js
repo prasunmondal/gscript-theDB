@@ -11,7 +11,7 @@ function is_present_conditional_or(ss, sheetname, matchCol, matchValue) {
     }
   }
   return {
-    "statusCode": 200,
+    "statusCode": 204,
     "content": false
   }
 }

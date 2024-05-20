@@ -12,7 +12,7 @@ function is_present_conditional_and(ss, sheetname, matchCol, matchValue,
     }
   }
   return {
-    "statusCode": 200,
+    "statusCode": 204,
     "content": false
   }
 }
