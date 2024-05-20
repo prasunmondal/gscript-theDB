@@ -77,11 +77,6 @@ var str = ""
       result.opId = opId
       result.logs = logs
       responseArray.push(result)
-
-
-      var data = {};
-      data.records =
-      return generateOutput(data, request);
     }
      // else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
     //   var data = {};
