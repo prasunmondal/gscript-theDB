@@ -15,7 +15,10 @@ function insert_object(jsonObj) {
   }
   var sheet = ss.getSheetByName(tabName);
   sheet.appendRow(rowData)
-  return "200: INSERTED SUCCESSFULLY."
+  return {
+    "statusCode": 200,
+    "content": "INSERTED SUCCESSFULLY"
+  }
 }
 
 function getColumnMap(keys, headers) {

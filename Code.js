@@ -27,10 +27,13 @@
 function doPost(request) {
 
 var str = ""
+  var logs = ""
+  var responseArray = [];
   // Loop through the array of JSON objects
   var jsonObjArray = JSON.parse(request.parameter.operations)
   for (var i = 0; i < jsonObjArray.length; i++) {
     var jsonObject = jsonObjArray[i];
+    logs += "Proceesing request: " + jsonObject.opCode + " - " + jsonObject.sheetId + " - " + jsonObject.tabName + " - " + jsonObject.objectData
 
 
   try {
@@ -49,11 +52,17 @@ var str = ""
 
     var sheet = ss.getSheetByName(tabName);
     var tabReference = ss.getSheetByName(tabName);
+    var opId = jsonObject.opId
 
     if (operation == "INSERT_OBJECT") {
-      return generateOutput(
-          insert_object(jsonObject)
-          , request)
+      var result = insert_object(jsonObject)
+      var response = {
+        "opId": opId,
+        "statusCode": result.statusCode,
+        "content": result.content,
+        "logs": logs
+      }
+      responseArray.push(response)
     }
     //  else if (operation == "INSERT_OBJECT_UNIQUE") {
     //   return generateOutput(
@@ -119,8 +128,10 @@ var str = ""
   } catch (err) {
     return generateOutput("FAILED: " + err, request)
   }
+    
   }
-  return generateOutput(str, request);
+  return generateOutput2(opId, responseArray, request)
+  return generateOutput(str, request, logs);
 }
 
 function getHeaderRow_(ss, sheetname) {
