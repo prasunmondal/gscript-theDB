@@ -1,5 +1,4 @@
 function fetch_all(ss, sheetname, properties) {
-  var str = "";
   if (typeof properties == "undefined") {
     properties = getHeaderRow_(ss, sheetname);
     properties = properties.map(function (p) {

@@ -18,6 +18,7 @@ function delete_conditional_and(sheetId, tabName, dataColumn, dataValue) {
   lock.releaseLock()
   return {
     "statusCode": 200,
-    "content": "SUCCESS: " + rowsDeleted + " row(s) deleted"
+    "content": "SUCCESS: " + rowsDeleted + " row(s) deleted",
+    "rowsAffected": rowsDeleted
   }
 }

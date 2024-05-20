@@ -18,7 +18,8 @@ function insert_object(jsonObj) {
     sheet.appendRow(rowData)
     return {
       "statusCode": 200,
-      "content": "Inserted Successfully"
+      "content": "Inserted Successfully",
+      "rowsAffected": 1
     }
 }
 

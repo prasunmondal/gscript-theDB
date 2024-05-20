@@ -29,7 +29,8 @@ function insert_object_unique(jsonObj) {
   if (is_present_conditional_and(ss, tabName, matchCol, matchValue)) {
     return {
       "statusCode": 400,
-      "errorMessage": "Bad Request. Unique Constraint Violated for Columns: " + matchCol
+      "errorMessage": "Bad Request. Unique Constraint Violated for Columns: " + matchCol,
+      "rowsAffected": 0
     }
   }
 
@@ -41,6 +42,7 @@ function insert_object_unique(jsonObj) {
   sheet.appendRow(rowData)
   return {
     "statusCode": 200,
-    "content": "INSERTED SUCCESSFULLY"
+    "content": "INSERTED SUCCESSFULLY",
+    "rowsAffected": 1
   }
 }

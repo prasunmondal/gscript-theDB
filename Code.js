@@ -91,7 +91,8 @@ function doPost(request) {
         var outputData = fetch_all(ss, tabName);
         result = {
           "statusCode": 200,
-          "content": outputData
+          "content": outputData,
+          "rowsAffected": outputData.length
         }
       }
       // else if (operation == "FETCH_ALL_MULTIPLE_TABS") {
@@ -103,14 +104,16 @@ function doPost(request) {
         var outputData = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
         result = {
           "statusCode": 200,
-          "content": outputData
+          "content": outputData,
+          "rowsAffected": outputData.length
         }
       }
       else if (operation == "FETCH_BY_CONDITION_AND") {
         var outputData = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
         result = {
           "statusCode": 200,
-          "content": outputData
+          "content": outputData,
+          "rowsAffected": outputData.length
         }
       }
       else {
@@ -128,7 +131,6 @@ function doPost(request) {
     responseArray.push(result)
   }
   return generateOutput2(opId, responseArray, request)
-  // return generateOutput(str, request, logs);
 }
 
 function getHeaderRow_(ss, sheetname) {

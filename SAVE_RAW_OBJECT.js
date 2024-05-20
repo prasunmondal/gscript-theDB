@@ -7,6 +7,7 @@ function saveDataRaw(jsonObj) {
 
     return {
       "statusCode": 200,
-      "content": "INSERTED SUCCESSFULLY"
+      "content": "INSERTED SUCCESSFULLY",
+      "rowsAffected": 1
     }
 }
