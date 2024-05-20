@@ -72,12 +72,18 @@ var str = ""
       result.logs = logs
       responseArray.push(result)
     }
-     // else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
-     //  var data = {};
-    //   data.records = is_present_conditional_or(ss, tabName, dataColumn,
-    //       dataValue);
-    //   return generateOutput(data, request);
-    // } else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
+     else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
+      var result = is_present_conditional_or(ss, tabName, dataColumn, dataValue);
+      result.opId = opId
+      result.logs = logs
+      responseArray.push(result)
+
+
+      var data = {};
+      data.records =
+      return generateOutput(data, request);
+    }
+     // else if (operation == "IS_PRESENT_CONDITIONAL_AND") {
     //   var data = {};
     //   data.records = is_present_conditional_and(ss, tabName, dataColumn,
     //       dataValue);
