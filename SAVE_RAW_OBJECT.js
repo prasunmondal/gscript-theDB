@@ -1,9 +1,20 @@
-function saveDataRaw(jsonString, request1) {
-  var sheetId = request1.parameter.sheetId;
-  var tabName = request1.parameter.tabName;
-  var ss = SpreadsheetApp.openById(sheetId);
+function saveDataRaw(jsonObj) {
+  try {
+    var ss = SpreadsheetApp.openById(jsonObj.sheetId);
+    var sheet = ss.getSheetByName(jsonObj.tabName);
+    var stringArray = jsonObj.objectData.replace(/[\[\]]/g, '').split(',');
 
-  var sheet = ss.getSheetByName(tabName);
-  sheet.appendRow([jsonString])
-  return "200: INSERTED SUCCESSFULLY"
+    sheet.appendRow(stringArray)
+
+    return {
+      "statusCode": 200,
+      "content": "INSERTED SUCCESSFULLY"
+    }
+  } catch (err) {
+    return {
+      "statusCode": 500,
+      "errorMessage": err.message,
+      "content": "Insertion failed"
+    }
+  }
 }

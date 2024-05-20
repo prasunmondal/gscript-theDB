@@ -74,11 +74,14 @@ var str = ""
       }
       responseArray.push(response)
     }
-     // else if (operation == "INSERT_RAW_OBJECT") {
-    //   return generateOutput(saveDataRaw(jsonObject.objectData, request),
-    //       request)
-    // } else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
-    //   var data = {};
+     else if (operation == "INSERT_RAW_OBJECT") {
+      var result = saveDataRaw(jsonObject)
+      result.opId = opId
+      result.logs = logs
+      responseArray.push(result)
+    }
+     // else if (operation == "IS_PRESENT_CONDITIONAL_OR") {
+     //  var data = {};
     //   data.records = is_present_conditional_or(ss, tabName, dataColumn,
     //       dataValue);
     //   return generateOutput(data, request);
