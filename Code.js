@@ -118,7 +118,9 @@ function doPost(request) {
       //   + jsonObject.opCode;
       // }
     } catch (err) {
-      return generateOutput("FAILED: " + err, request)
+      result.statusCode = 500
+      result.errorMessage = err.message
+      result.content = "Command Failed"
     }
     result.opId = opId
     result.logs = logs

@@ -1,5 +1,4 @@
 function is_present_conditional_or(ss, sheetname, matchCol, matchValue) {
-  try {
     var rows = getDataRows_(ss, sheetname);
 
     for (var r = 0, l = rows.length; r < l; r++) {
@@ -15,11 +14,4 @@ function is_present_conditional_or(ss, sheetname, matchCol, matchValue) {
       "statusCode": 200,
       "content": false
     }
-  } catch (err) {
-    return {
-      "statusCode": 500,
-      "errorMessage": err.message,
-      "content": "Insertion failed"
-    }
-  }
 }

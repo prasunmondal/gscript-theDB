@@ -1,5 +1,4 @@
 function insert_object(jsonObj) {
-  try {
     var sheetId = jsonObj.sheetId;
     var tabName = jsonObj.tabName;
     var data = JSON.parse(jsonObj.objectData);
@@ -21,13 +20,6 @@ function insert_object(jsonObj) {
       "statusCode": 200,
       "content": "Inserted Successfully"
     }
-  } catch (err) {
-    return {
-      "statusCode": 500,
-      "errorMessage": err.message,
-      "content": "Insertion failed"
-    }
-  }
 }
 
 function getColumnMap(keys, headers) {
