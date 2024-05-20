@@ -88,29 +88,36 @@ function doPost(request) {
       //   return generateOutput(data, request);
       // }
       else if (operation == "FETCH_ALL") {
-        var data = {};
-        data.records = fetch_all(ss, tabName);
+        var outputData = fetch_all(ss, tabName);
         result = {
           "statusCode": 200,
-          "content": data.records
+          "content": outputData
         }
       }
       // else if (operation == "FETCH_ALL_MULTIPLE_TABS") {
       //   var data = {};
       //   data.records = fetch_all_multiple_tabs(ss, tabName);
       //   return generateOutput(data, request);
-      // } else if (operation == "FETCH_BY_CONDITION_OR") {
-      //   var data = {};
-      //   data.records = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
-      //   return generateOutput(data, request);
-      // } else if (operation == "FETCH_BY_CONDITION_AND") {
-      //   var data = {};
-      //   data.records = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
-      //   return generateOutput(data, request);
-      // } else {
-      //   throw "Error: Illegal opCode. Invalid Operation type - "
-      //   + jsonObject.opCode;
       // }
+      else if (operation == "FETCH_BY_CONDITION_OR") {
+        var outputData = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
+        result = {
+          "statusCode": 200,
+          "content": outputData
+        }
+      }
+      else if (operation == "FETCH_BY_CONDITION_AND") {
+        var outputData = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
+        result = {
+          "statusCode": 200,
+          "content": outputData
+        }
+      }
+      else {
+        result.statusCode = 400
+        result.errorMessage = "Bad Request"
+        result.content = "Invalid OpCode"
+      }
     } catch (err) {
       result.statusCode = 500
       result.errorMessage = err.message
@@ -121,7 +128,7 @@ function doPost(request) {
     responseArray.push(result)
   }
   return generateOutput2(opId, responseArray, request)
-  return generateOutput(str, request, logs);
+  // return generateOutput(str, request, logs);
 }
 
 function getHeaderRow_(ss, sheetname) {
