@@ -72,13 +72,10 @@ function doPost(request) {
         result = delete_all(sheetId, tabName);
       } else if (operation == "DELETE_CONDITIONAL_AND") {
         result = delete_conditional_and(sheetId, tabName, dataColumn, dataValue);
+      } else if (operation == "DELETE_CONDITIONAL_OR") {
+        result = delete_conditional_or(sheetId, tabName, dataColumn, dataValue);
       }
-      // else if (operation == "DELETE_CONDITIONAL_OR") {
-      //   var data = {};
-      //   data.records = delete_conditional_or(sheetId, tabName, dataColumn,
-      //       dataValue);
-      //   return generateOutput(data, request);
-      // } else if (operation == "FETCH_OBJECT") {
+      // else if (operation == "FETCH_OBJECT") {
       //   var
       //       keys = jsonObject.keys,
       //       searchColumn = jsonObject.searchColumn;
