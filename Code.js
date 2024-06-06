@@ -82,12 +82,16 @@ function doPost(request) {
           //       searchColumn = jsonObject.searchColumn;
           //   var data = {};
           //   data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
-          //   return generateOutput(data, request);
-          // else if (operation == "FETCH_BY_QUERY") {
-          //   var data = {};
-          //   data.records = fetch_by_query(ss, tabName, request);
-          //   return generateOutput(data, request);
-      // }
+      //   return generateOutput(data, request);
+      else if (operation == "FETCH_BY_QUERY") {
+        var outputData = fetch_by_query(ss, tabName, request);
+        var statusCode = (outputData.length > 0) ? 200 : 204
+        result = {
+          "statusCode": statusCode,
+          "content": outputData,
+          "rowsAffected": outputData.length
+        }
+      }
       else if (operation == "FETCH_ALL") {
         var outputData = fetch_all(ss, tabName);
         var statusCode = (outputData.length > 0)? 200 : 204
