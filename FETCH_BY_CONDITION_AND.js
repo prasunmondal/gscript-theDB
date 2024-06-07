@@ -22,5 +22,9 @@ function fetch_by_condition_and(ss, sheetname, matchCol, matchValue,
       data.push(record);
     }
   }
-  return data;
+  return {
+    "statusCode": (data.length > 0)? 200 : 204,
+    "content": data,
+    "rowsAffected": data.length
+  }
 }

@@ -84,7 +84,6 @@ function doPost(request) {
           //   data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
       //   return generateOutput(data, request);
       else if (operation == "FETCH_BY_QUERY") {
-
         var outputData = fetch_by_query(ss, tabName, jsonObject);
         var statusCode = (outputData.length > 0) ? 200 : 204
         result = {
@@ -108,21 +107,9 @@ function doPost(request) {
           //   return generateOutput(data, request);
       // }
       else if (operation == "FETCH_BY_CONDITION_OR") {
-        var outputData = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
-        var statusCode = (outputData.length > 0)? 200 : 204
-        result = {
-          "statusCode": statusCode,
-          "content": outputData,
-          "rowsAffected": outputData.length
-        }
+        result = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
       } else if (operation == "FETCH_BY_CONDITION_AND") {
-        var outputData = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
-        var statusCode = (outputData.length > 0)? 200 : 204
-        result = {
-          "statusCode": statusCode,
-          "content": outputData,
-          "rowsAffected": outputData.length
-        }
+        result = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
       } else {
         result.statusCode = 400
         result.errorMessage = "Bad Request"
