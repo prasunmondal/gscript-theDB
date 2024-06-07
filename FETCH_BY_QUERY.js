@@ -1,4 +1,4 @@
-function fetch_by_query(ss, sheetname, request, properties) {
+function fetch_by_query(ss, sheetname, jsonObject, properties) {
 
   // Create a new Sheet
   const tempTab = ss.insertSheet();
@@ -11,7 +11,7 @@ function fetch_by_query(ss, sheetname, request, properties) {
     });
   }
 
-  var query = substituteColValues(ss, sheetname, request.parameter.query)
+  var query = substituteColValues(ss, sheetname, jsonObject.query)
   var sh = ss.getSheetByName(sheetname);
   var rows = tempTab.getRange("a2").setFormula(query).getValues();
 

@@ -84,7 +84,8 @@ function doPost(request) {
           //   data.records = getDataByColumnName(ss, tabName, searchColumn, keys);
       //   return generateOutput(data, request);
       else if (operation == "FETCH_BY_QUERY") {
-        var outputData = fetch_by_query(ss, tabName, request);
+
+        var outputData = fetch_by_query(ss, tabName, jsonObject);
         var statusCode = (outputData.length > 0) ? 200 : 204
         result = {
           "statusCode": statusCode,
