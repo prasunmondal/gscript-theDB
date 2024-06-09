@@ -7,12 +7,12 @@ function is_present_conditional_and(ss, sheetname, matchCol, matchValue,
     if (util_match_and(ss, sheetname, matchValue, matchCol, row)) {
       return {
         "statusCode": 200,
-        "content": true
+        "content": [{"result":true}]
       }
     }
   }
   return {
     "statusCode": 204,
-    "content": false
+      "content": [{"result":false}]
   }
 }
