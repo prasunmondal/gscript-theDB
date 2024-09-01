@@ -136,5 +136,12 @@ function getHeaderRow_(ss, sheetname) {
 
 function getDataRows_(ss, sheetname) {
   var sh = ss.getSheetByName(sheetname);
-  return sh.getRange(2, 1, sh.getLastRow() - 1, sh.getLastColumn()).getValues();
+  var lastRow = sh.getLastRow();
+  
+  // If there is only one row (headers), return an empty list
+  if (lastRow <= 1) {
+    return [];
+  }
+  
+  return sh.getRange(2, 1, lastRow - 1, sh.getLastColumn()).getValues();
 }
