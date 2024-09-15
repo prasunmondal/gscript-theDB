@@ -17,9 +17,9 @@ function insert_objects(jsonObj) {
       rowData[colMap[i]] = JSON.stringify(values[i]).replace('"', '').replace('"', '');
     }
     rowsToAdd.push(rowData)
-    var lastRow = sheet.getLastRow();
-    sheet.getRange(lastRow + 1, 1, values.length, headers.length).setValues(values);
   }
+  var lastRow = sheet.getLastRow();
+  sheet.getRange(lastRow + 1, 1, rowsToAdd.length, rowsToAdd[0].length).setValues(rowsToAdd);
 
   return {
     "statusCode": 200,
