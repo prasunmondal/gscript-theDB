@@ -60,6 +60,8 @@ function doPost(request) {
 
       if (operation == "INSERT_OBJECT") {
         result = insert_object(jsonObject)
+      } else if (operation == "INSERT_OBJECTS") {
+        result = insert_objects(jsonObject)
       } else if (operation == "INSERT_OBJECT_UNIQUE") {
         result = insert_object_unique(jsonObject)
       } else if (operation == "INSERT_RAW_OBJECT") {
