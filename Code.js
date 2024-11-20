@@ -112,6 +112,8 @@ function doPost(request) {
         result = fetch_by_condition_or(ss, tabName, dataColumn, dataValue);
       } else if (operation == "FETCH_BY_CONDITION_AND") {
         result = fetch_by_condition_and(ss, tabName, dataColumn, dataValue);
+      } else if (operation == "UPDATE_SHEET") {
+        result = updateSheetsFromJson(jsonObject);
       } else {
         result.statusCode = 400
         result.errorMessage = "Bad Request"
