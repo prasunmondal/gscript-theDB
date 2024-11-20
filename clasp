@@ -4,6 +4,8 @@ clasp push
 clasp deploy
 echo $(clasp deploy) | awk '{print $5;}'
 clasp undeploy @12
+clasp deployments
+
 
 
 

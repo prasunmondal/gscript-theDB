@@ -82,3 +82,54 @@ function updateSheetsFromJson(jsonInput) {
         };
     }
 }
+
+
+/* Sample Request:
+
+curl --location 'https://script.google.com/macros/s/AKfycbzg3b6YzCPwEzUKytI9j3tDd4-S9wVTujGzopN_qFClARWkijgXzIO46_fPcojr0NYrjA/exec' \
+--form 'operations="[
+    {
+      \"opCode\": \"UPDATE_SHEET\",
+      \"sheetId\": \"1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",
+      \"tabName\": \"TestSheet1\",
+      \"opId\": \"37159ae7-a1ce-4c8f-ad09-43464ade4ca7-1732086994767\",
+      \"requests\": [
+		{
+			\"opId\": \"request-update-1\",
+		    \"sheedId\": \"1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",
+		    \"tabname\": \"Sheet134\",
+		    \"fieldsToMatch\": [
+		      { \"key\": \"column1\", \"value\": \"prasun\" },
+		      { \"key\": \"column2\", \"value\": \"mondal\" }
+		    ],
+		    \"updates\": [
+		      { \"key\": \"column3\", \"value\": \"cow\" },
+		      { \"key\": \"column4\", \"value\": \"hen\" }
+		    ]
+	    },
+	    {
+			\"opId\": \"request-update-2\",
+		    \"sheedId\": \"1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",
+		    \"tabname\": \"135\",
+		    \"fieldsToMatch\": [
+		      { \"key\": \"column1\", \"value\": \"prasun\" },
+		      { \"key\": \"column2\", \"value\": \"mondal\" }
+		    ],
+		    \"updates\": [
+		      { \"key\": \"column3\", \"value\": \"hum bhi\" },
+		      { \"key\": \"column24\", \"value\": \"hai josh mein\" }
+		    ]
+	    }
+    ]
+    },
+    {
+      \"opCode\": \"FETCH_ALL\",
+      \"sheetId\": \"1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",
+      \"tabName\": \"Sheet134\",
+      \"opId\": \"54f46422-8c0d-4f73-9c62-81590a34c7da-1732086994768\"
+    }
+  ]"'
+
+
+
+ */
