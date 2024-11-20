@@ -67,12 +67,6 @@ function doPost(request) {
   return generateOutput2(jsonObjArray[0].opId, responseArray, request);
 }
 
-// Utility functions to get rows
-function getHeaderRow_(ss, sheetname) {
-  var sh = ss.getSheetByName(sheetname);
-  return sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
-}
-
 function getDataRows_(ss, sheetname) {
   var sh = ss.getSheetByName(sheetname);
   var lastRow = sh.getLastRow();
