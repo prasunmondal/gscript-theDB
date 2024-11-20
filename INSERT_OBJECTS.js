@@ -28,15 +28,21 @@ function insert_objects(jsonObj) {
   }
 }
 
-function getColumnMap(keys, headers) {
+const cachedColMap = {}
+function getColumnMap(keys, headers, sheetId, tabname) {
+  const cacheKey = sheetId + "_" + tabname
+  if(cachedColMap[cacheKey])
+    return cachedColMap[cacheKey]
+
   var colMap = []
   for (var i = 0; i < keys.length; i++) {
     for (var j = 0; j < headers.length; j++) {
-      if (keys[i] == headers[j]) {
+      if (keys[i] === headers[j]) {
         colMap[i] = j;
         break;
       }
     }
   }
+  cachedColMap[cacheKey] = colMap
   return colMap
 }
