@@ -27,3 +27,16 @@ function insert_objects(jsonObj) {
     "rowsAffected": dataList.length
   }
 }
+
+function getColumnMap(keys, headers) {
+  var colMap = []
+  for (var i = 0; i < keys.length; i++) {
+    for (var j = 0; j < headers.length; j++) {
+      if (keys[i] == headers[j]) {
+        colMap[i] = j;
+        break;
+      }
+    }
+  }
+  return colMap
+}
