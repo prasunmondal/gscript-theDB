@@ -19,3 +19,41 @@ function getHeaderRow_(ss, sheetname) {
 
     return headers;
 }
+
+
+
+
+// Returns the map of headers vs column number
+// Global cache object to store header maps
+var headerCache = {};
+
+function getColumnMap(keys, headers, cacheKey) {
+    // If the header map for this cacheKey is already cached, return it
+    if (headerCache[cacheKey]) {
+        return headerCache[cacheKey];
+    }
+
+    // Create a map of header values to their column numbers
+    var headerMap = {};
+    for (var j = 0; j < headers.length; j++) {
+        headerMap[headers[j]] = j;
+    }
+
+    // Initialize an empty object to store the key-column number map
+    var colMap = {};
+
+    // Iterate through the keys and map them to their column number using headerMap
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        if (headerMap[key] !== undefined) {
+            colMap[key] = headerMap[key];
+        } else {
+            colMap[key] = -1; // If the key isn't found in the headers, assign a default value like -1
+        }
+    }
+
+    // Cache the colMap for future use
+    headerCache[cacheKey] = colMap;
+
+    return colMap;
+}
